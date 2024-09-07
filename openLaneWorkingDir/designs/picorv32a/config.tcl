@@ -7,7 +7,9 @@ set ::env(SDC_FILE) "./designs/picorv32a/src/picorv32a.sdc"
 
 set ::env(CLOCK_PERIOD) "40.000"
 set ::env(CLOCK_PORT) "clk"
-
+#overriding PL_TARGET_DENSITY to .45
+set ::env(PL_TARGET_DENSITY) 0.45
+set ::env(FP_CORE_UTIL) 45
 
 set ::env(CLOCK_NET) $::env(CLOCK_PORT)
 

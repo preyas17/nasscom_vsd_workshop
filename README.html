@@ -1077,8 +1077,8 @@ body .markdown-body
 .highlight .il{color:#009999}
 .highlight .gc{color:#999;background-color:#EAF2F5}
 </style><title>README</title></head><body><article class="markdown-body"><h1 id="nasscom_vsd_workshop">nasscom_vsd_workshop<a class="headerlink" href="#nasscom_vsd_workshop" title="Permanent link"></a></h1>
-<h1 id="day1">Day1<a class="headerlink" href="#day1" title="Permanent link"></a></h1>
-<p>Step 1: Using OpenLANE flow and performing synthesis</p>
+<h1 id="day1-using-openlane-flow-and-performing-synthesis">Day1: Using OpenLANE flow and performing synthesis<a class="headerlink" href="#day1-using-openlane-flow-and-performing-synthesis" title="Permanent link"></a></h1>
+<p>Step 1: Perform Synthesis</p>
 <p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day1_screenshots/running_openflow_docker.png?raw=true" title="img1" /></p>
 <p>Step 2: Prepearing the folder structure for generating reports for synthesis, routing, floorplan etc.</p>
 <p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day1_screenshots/prep_design.png?raw=true" title="img2" /></p>
@@ -1090,4 +1090,34 @@ body .markdown-body
 <pre><code>FF ratio: number of D-FF(dfxtp2)/total number of cells =&gt; 1613/14876 =&gt; 0.108429
 
 Percentage of D-flip flop=&gt; 0.108429685 x 100 =&gt; 108.429
-</code></pre></article></body></html>
+</code></pre>
+<h1 id="day2-using-openlane-flow-and-performing-floorplan">Day2- Using OpenLANE flow and performing floorplan<a class="headerlink" href="#day2-using-openlane-flow-and-performing-floorplan" title="Permanent link"></a></h1>
+<p>Step 1: Performing Floorplan</p>
+<pre><code>docker
+
+./flow.tcl -interactive
+
+package require openlane 0.9
+
+prep -design picorv32a
+
+run_synthesis
+
+run_floorplan
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day2_screenshots/configuration_floorplan.png?raw=true" title="img_day2_1" /></p>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day2_screenshots/run_floorplan.png?raw=true" title="img_day2_2" /></p>
+<h1 id="floorplan-def">floorplan def<a class="headerlink" href="#floorplan-def" title="Permanent link"></a></h1>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day2_screenshots/area.png?raw=true" title="img_day2_3" /></p>
+<pre><code>Die Width in microns = 583970/1000 --&gt; 583.970 microns
+Die Height in microns = 594690/1000 --&gt; 594.690 microns
+Area of die=  583.970 x 594.690 --&gt; 347281.1193 square microns
+</code></pre>
+<h1 id="magic-tool-generated-floorplan-def">magic tool: generated floorplan def<a class="headerlink" href="#magic-tool-generated-floorplan-def" title="Permanent link"></a></h1>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day2_screenshots/magic_open.png?raw=true" title="img_day2_4" /></p>
+<pre><code>Metal Layers
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day2_screenshots/metal_layers.png?raw=true" title="img_day2_5" /></p>
+<pre><code>Standard Cells
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day2_screenshots/standar_cells.png?raw=true" title="img_day2_6" /></p></article></body></html>
