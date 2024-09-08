@@ -72,3 +72,150 @@ Step 1: Performing Floorplan
 
 	Standard Cells
 ![Alt text](./day2_screenshots/standar_cells.png?raw=true "img_day2_6")
+
+
+
+#Day3- inverter characteristics using ngspice and DRC checks
+
+	cd Desktop/work/tools/openlane_working_dir/openlane
+	git clone https://github.com/nickson-jose/vsdstdcelldesign --depth=1
+	cd vsdstdcelldesign
+	cp /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech .
+	magic -T sky130A.tech sky130_inv.mag &
+
+![Alt text](./day3_screenshots/inverter_magic.png?raw=true "img_day3_1")
+
+#pmos
+![Alt text](./day3_screenshots/pmos.png?raw=true "img_day3_2")
+
+#nmos
+![Alt text](./day3_screenshots/nmos.png?raw=true "img_day3_3")
+
+
+#VDD and GND connections
+![Alt text](./day3_screenshots/vdd_connection.png?raw=true "img_day3_4")
+
+![Alt text](./day3_screenshots/vss_connection.png?raw=true "img_day3_5")
+
+#Spice extraction
+
+		extract all
+		ext2spice cthresh 0 rthresh 0
+		ext2spice
+
+![Alt text](./day3_screenshots/extract_spice.png?raw=true "img_day3_6")	
+
+#checking grid size
+
+![Alt text](./day3_screenshots/grid_size.png?raw=true "img_day3_7")	
+
+#spice file
+
+
+![Alt text](./day3_screenshots/spiceFIleUpdated.png?raw=true "img_day3_8")	
+
+
+#ngspice simulations for Inverter
+
+	ngspice sky130_inv.spice
+	plot y vs time a
+
+![Alt text](./day3_screenshots/inverter_ngspiceOut.png?raw=true "img_day3_9")	
+
+#Rise and fall transition time
+![Alt text](./day3_screenshots/20perOutputRise.png?raw=true "img_day3_10")	
+
+![Alt text](./day3_screenshots/20_80perOutputRiseValues.png?raw=true "img_day3_11")	
+
+	Rise Time= time taken for output to reach 80%  of 3.3v- time taken for output to reach 20%  of 3.3v
+		 = 2.245e^-9 - 2.182^e-9
+		 =0.063^e-9
+		 =63ps
+
+![Alt text](./day3_screenshots/20_80perOutputFallValues.png?raw=true "img_day3_12")	
+
+	Fall Time= time taken for output to reach 20% of 3.3v - time taken for output to reach 80% of 3.3v
+		 = 4.0944e^-9 - 4.052^e-9
+		 =0.0424^e-9
+		 =42.4ps
+
+#Rise Cell Delay and Fall Cell Delay Calculation
+
+
+
+![Alt text](./day3_screenshots/cellRiseDelay.png?raw=true "img_day3_13")
+
+![Alt text](./day3_screenshots/cellRiseDelayValues.png?raw=true "img_day3_14")
+
+
+	Rise Cell Delay= time taken for output to rise 50%  of 3.3v - time taken for input to fall 50% of 3.3v
+				   = 2.2108e^-9 - 2.15e^-9
+				   =0.00608e^-9
+				   =60.8ps
+
+![Alt text](./day3_screenshots/cellFallDelayValues.png?raw=true "img_day3_15")
+
+
+	Rise Cell Delay= time taken for output to fall 50%  of 3.3v - time taken for input to rise 50% of 3.3v
+				   = 4.077e^-9 - 4.05e^-9
+				   =0.027e^-9
+				   =27ps				   
+
+
+#Design Rule Checks
+
+	cd ~
+	wget http://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz
+	tar xfz drc_tests.tgz
+	cd drc_tests
+	ls -al
+	vi .magicrc
+	magic -d XR &
+
+#Incorrectly poly.9 rule no drc violation even though spacing < 0.48u	
+
+![Alt text](./day3_screenshots/poly_box.png?raw=true "img_day3_16")
+
+#Updated drc sky130A.tech file
+
+![Alt text](./day3_screenshots/polyRuleUpdate_1.png?raw=true "img_day3_17")
+![Alt text](./day3_screenshots/polyRuleUpdate_1.png?raw=true "img_day3_18")	
+
+	tech load sky130A.tech
+	drc check
+	drc why
+
+![Alt text](./day3_screenshots/polyRuleUpdate_2_layout.png?raw=true "img_day3_19")	
+
+
+
+
+![Alt text](./day3_screenshots/excersice_drc_failure.png?raw=true "img_day3_20")
+	fixing drc rule in skytech130A.tech	
+![Alt text](./day3_screenshots/fixing_sky130_tech.png?raw=true "img_day3_21")	
+![Alt text](./day3_screenshots/drcFixfor_poly.png?raw=true "img_day3_22")	
+
+
+#Incorrect DRC Rule for  nwell.4
+
+	Rule details
+![Alt text](./day3_screenshots/lab_ex_nwell_4_rule.png?raw=true "img_day3_23")	
+
+	Incorrectly implemented nwell.4 DRC
+![Alt text](./day3_screenshots/lab_ex_nwell_4.png?raw=true "img_day3_24")	
+
+	Update drc sky130A.tech file 
+![Alt text](./day3_screenshots/lab_ex_changeRule_1.png?raw=true "img_day3_25")	
+![Alt text](./day3_screenshots/lab_ex_changeRule_2.png?raw=true "img_day3_26")	
+
+	tech load sky130A.tech
+	drc style drc(full)
+	drc check
+	drc why
+![Alt text](./day3_screenshots/lax_ex_nwell_final2.png?raw=true "img_day3_27")	
+
+
+
+
+
+
