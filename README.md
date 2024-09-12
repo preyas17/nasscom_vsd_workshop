@@ -77,10 +77,10 @@ Step 1: Performing Floorplan
 
 #Day3- inverter characteristics using ngspice and DRC checks
 
-	cd Desktop/work/tools/openlane_working_dir/openlane
+	cd ~/Desktop/work/tools/openlane_working_dir/openlane
 	git clone https://github.com/nickson-jose/vsdstdcelldesign --depth=1
 	cd vsdstdcelldesign
-	cp /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech .
+	cp ~/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech .
 	magic -T sky130A.tech sky130_inv.mag &
 
 ![Alt text](./day3_screenshots/inverter_magic.png?raw=true "img_day3_1")
@@ -217,7 +217,7 @@ Step 1: Performing Floorplan
 
 #Day4- timing analysis and Clock tree synthesis
 
-	cd Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign
+	cd ~/Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign
 	magic -T sky130A.tech sky130_inv.mag &
 	cat ~/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tracks.info
 ![Alt text](./day4_screenshots/img1.png?raw=true "img_day4_1")	
@@ -242,7 +242,7 @@ Step 1: Performing Floorplan
 ![Alt text](./day4_screenshots/img5.png?raw=true "img_day4_4")	
 
 
-	cd Desktop/work/tools/openlane_working_dir/openlane
+	cd ~/Desktop/work/tools/openlane_working_dir/openlane
 	docker
 	./flow.tcl -interactive
 	package require openlane 0.9
@@ -255,11 +255,12 @@ Step 1: Performing Floorplan
 ![Alt text](./day4_screenshots/img7.png?raw=true "img_day4_6")	
 
 
-**Fixing slack issues**  <br>
-	rm -rf  ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/12-09_17-48/results/synthesis/picorv32a.synthesis.v <br>
-	set ::env(SYNTH_STRATEGY) "DELAY 3" <br>
-	set ::env(SYNTH_SHARE_RESOURCES) 1 <br>
-	run_synthesis <br>
+#Fixing slack issues
+
+	rm -rf  ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/12-09_17-48/results/synthesis/picorv32a.synthesis.v
+	set ::env(SYNTH_STRATEGY) "DELAY 3"
+	set ::env(SYNTH_SHARE_RESOURCES) 1
+	run_synthesis
 
 ![Alt text](./day4_screenshots/img9.png?raw=true "img_day4_7")		
 
@@ -267,7 +268,7 @@ Step 1: Performing Floorplan
 **Getting error in floorplan**  <br>
 	run_floorplan
 
-**need to inicrease PL_TARGET_DENSITY** <br>
+**need to increase PL_TARGET_DENSITY** <br>
 
 ![Alt text](./day4_screenshots/img10.png?raw=true "img_day4_8")	
 
@@ -285,8 +286,8 @@ Step 1: Performing Floorplan
 ![Alt text](./day4_screenshots/img12.png?raw=true "img_day4_10")
 
 
-	cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/12-09_17-48/results/placement/
-	magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
+	cd ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/12-09_17-48/results/placement/
+	magic -T ~/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
 
 ![Alt text](./day4_screenshots/img13.png?raw=true "img_day4_11")	
 ![Alt text](./day4_screenshots/img14.png?raw=true "img_day4_12")	
