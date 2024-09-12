@@ -215,6 +215,90 @@ Step 1: Performing Floorplan
 ![Alt text](./day3_screenshots/lax_ex_nwell_final2.png?raw=true "img_day3_27")	
 
 
+#Day4- timing analysis and Clock tree synthesis
+
+	cd Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign
+	magic -T sky130A.tech sky130_inv.mag &
+	cat ~/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tracks.info
+![Alt text](./day4_screenshots/img1.png?raw=true "img_day4_1")	
+
+**Setting grid according to tracks.info**  <br>
+	grid 0.46um 0.34um 0.23um 0.17um
+
+
+![Alt text](./day4_screenshots/img2.png?raw=true "img_day4_2")	
+![Alt text](./day4_screenshots/img3.png?raw=true "img_day4_3")	
+
+	save sky130_vsdinv.mag
+	magic -T sky130A.tech sky130_vsdinv.mag &
+	lef write
+
+
+	cp sky130_vsdinv.lef ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
+	cp libs/sky130_fd_sc_hd__* ~/Desktop/work/tools/openlabne_working_dir/openlane/designs/picorv32a/src/
+
+**Modifying config.tcl**
+
+![Alt text](./day4_screenshots/img5.png?raw=true "img_day4_4")	
+
+
+	cd Desktop/work/tools/openlane_working_dir/openlane
+	docker
+	./flow.tcl -interactive
+	package require openlane 0.9
+	prep -design picorv32a
+	set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+	add_lefs -src $lefs
+	run_synthesis
+
+![Alt text](./day4_screenshots/img6.png?raw=true "img_day4_5")
+![Alt text](./day4_screenshots/img7.png?raw=true "img_day4_6")	
+
+
+**Fixing slack issues**  <br>
+	rm -rf  ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/12-09_17-48/results/synthesis/picorv32a.synthesis.v <br>
+	set ::env(SYNTH_STRATEGY) "DELAY 3" <br>
+	set ::env(SYNTH_SHARE_RESOURCES) 1 <br>
+	run_synthesis <br>
+
+![Alt text](./day4_screenshots/img9.png?raw=true "img_day4_7")		
+
+
+**Getting error in floorplan**  <br>
+	run_floorplan
+
+**need to inicrease PL_TARGET_DENSITY** <br>
+
+![Alt text](./day4_screenshots/img10.png?raw=true "img_day4_8")	
+
+	set ::env(PL_TARGET_DENSITY) 0.45
+	set ::env(FP_CORE_UTIL) 50
+	set ::env(CLOCK_PERIOD) "40.000"
+
+![Alt text](./day4_screenshots/img11.png?raw=true "img_day4_9")
+
+	init_floorplan
+	place_io
+	tap_decap_or
+	run_placement	
+
+![Alt text](./day4_screenshots/img12.png?raw=true "img_day4_10")
+
+
+	cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/12-09_17-48/results/placement/
+	magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
+
+![Alt text](./day4_screenshots/img13.png?raw=true "img_day4_11")	
+![Alt text](./day4_screenshots/img14.png?raw=true "img_day4_12")	
+![Alt text](./day4_screenshots/img15.png?raw=true "img_day4_13")	
+![Alt text](./day4_screenshots/img16.png?raw=true "img_day4_14")
+
+
+
+
+
+
+
 
 
 
