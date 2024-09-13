@@ -298,11 +298,77 @@ Step 1: Performing Floorplan
 
 
 
+#Post-synth STA
 
 
 
+creating pre_sta.conf and my_base.sdc for STA
+![Alt text](./day4_screenshots/img17.png?raw=true "img_day4_15")
+![Alt text](./day4_screenshots/img18.png?raw=true "img_day4_16")
 
 
+	cd ~/Desktop/work/tools/openlane_working_dir/openlane
+	sta pre_sta.conf
+![Alt text](./day4_screenshots/img19.png?raw=true "img_day4_17")
+
+![Alt text](./day4_screenshots/img21.png?raw=true "img_day4_18_1")
+Getting cells that has fan size of more than 5, need to set fan_size max of 4 as we have cells of max fan_out size of 4 in our .lib files
 
 
+getting timing violations, need to fix this
 
+	cd ~/Desktop/work/tools/openlane_working_dir/openlane
+	docker
+	./flow.tcl -interactive
+	package require openlane 0.9
+	prep -design picorv32a -tag 12-09_17-48 -overwrite
+	set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+	add_lefs -src $lefs
+	set ::env(CLOCK_PERIOD) "24.73"
+	run_synthesis
+
+![Alt text](./day4_screenshots/img20.png?raw=true "img_day4_17")
+
+setting max fanout size as 4 and run_synthesis again
+
+	set ::env(SYNTH_MAX_FANOUT) 4
+	rm -rf  ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/12-09_17-48/results/synthesis/picorv32a.synthesis.v
+	run_synthesis
+
+
+![Alt text](./day4_screenshots/img22.png?raw=true "img_day4_18")
+
+
+cheking sta results again
+
+	sta pre_sta.conf
+
+![Alt text](./day4_screenshots/img23.png?raw=true "img_day4_18")
+
+By observing that node _11672_ has a fanout of 4 but is using cell of size 2, replacing the cell can help in reducing slack
+![Alt text](./day4_screenshots/img27.png?raw=true "img_day4_18")
+![Alt text](./day4_screenshots/img28.png?raw=true "img_day4_19")
+
+	report_checks -fields {net cap slew input_pins} -digits 4
+
+
+Again node _11675_ has a fanout of 4 but is using cell of size 2, replacing the cell can help in reducing slack
+
+![Alt text](./day4_screenshots/img29.png?raw=true "img_day4_20")
+![Alt text](./day4_screenshots/img31.png?raw=true "img_day4_20")
+
+
+	report_checks -fields {net cap slew input_pins} -digits 4
+![Alt text](./day4_screenshots/img32.png?raw=true "img_day4_20")	
+
+observing the changes which we made by replacing the cells
+
+	report_checks -from _29052_ -to _30440_ -through _14514_
+
+![Alt text](./day4_screenshots/img33.png?raw=true "img_day4_20")	
+
+![Alt text](./day4_screenshots/img33a.png?raw=true "img_day4_20")
+![Alt text](./day4_screenshots/img33b.png?raw=true "img_day4_20")
+
+
+![Alt text](./day4_screenshots/img34.png?raw=true "img_day4_21")

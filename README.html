@@ -1279,4 +1279,54 @@ magic -T ~/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/
 <p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img13.png?raw=true" title="img_day4_11" />  <br />
 <img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img14.png?raw=true" title="img_day4_12" />  <br />
 <img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img15.png?raw=true" title="img_day4_13" />  <br />
-<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img16.png?raw=true" title="img_day4_14" /></p></article></body></html>
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img16.png?raw=true" title="img_day4_14" /></p>
+<h1 id="post-synth-sta">Post-synth STA<a class="headerlink" href="#post-synth-sta" title="Permanent link"></a></h1>
+<p>creating pre_sta.conf and my_base.sdc for STA
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img17.png?raw=true" title="img_day4_15" />
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img18.png?raw=true" title="img_day4_16" /></p>
+<pre><code>cd ~/Desktop/work/tools/openlane_working_dir/openlane
+sta pre_sta.conf
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img19.png?raw=true" title="img_day4_17" /></p>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img21.png?raw=true" title="img_day4_18_1" />
+Getting cells that has fan size of more than 5, need to set fan_size max of 4 as we have cells of max fan_out size of 4 in our .lib files</p>
+<p>getting timing violations, need to fix this</p>
+<pre><code>cd ~/Desktop/work/tools/openlane_working_dir/openlane
+docker
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a -tag 12-09_17-48 -overwrite
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+set ::env(CLOCK_PERIOD) "24.73"
+run_synthesis
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img20.png?raw=true" title="img_day4_17" /></p>
+<p>setting max fanout size as 4 and run_synthesis again</p>
+<pre><code>set ::env(SYNTH_MAX_FANOUT) 4
+rm -rf  ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/12-09_17-48/results/synthesis/picorv32a.synthesis.v
+run_synthesis
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img22.png?raw=true" title="img_day4_18" /></p>
+<p>cheking sta results again</p>
+<pre><code>sta pre_sta.conf
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img23.png?raw=true" title="img_day4_18" /></p>
+<p>By observing that node <em>11672</em> has a fanout of 4 but is using cell of size 2, replacing the cell can help in reducing slack
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img27.png?raw=true" title="img_day4_18" />
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img28.png?raw=true" title="img_day4_19" /></p>
+<pre><code>report_checks -fields {net cap slew input_pins} -digits 4
+</code></pre>
+<p>Again node <em>11675</em> has a fanout of 4 but is using cell of size 2, replacing the cell can help in reducing slack</p>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img29.png?raw=true" title="img_day4_20" />
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img31.png?raw=true" title="img_day4_20" /></p>
+<pre><code>report_checks -fields {net cap slew input_pins} -digits 4
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img32.png?raw=true" title="img_day4_20" />    </p>
+<p>observing the changes which we made by replacing the cells</p>
+<pre><code>report_checks -from _29052_ -to _30440_ -through _14514_
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img33.png?raw=true" title="img_day4_20" />    </p>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img33a.png?raw=true" title="img_day4_20" />
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img33b.png?raw=true" title="img_day4_20" /></p>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img34.png?raw=true" title="img_day4_21" /></p></article></body></html>
