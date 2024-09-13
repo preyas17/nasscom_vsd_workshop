@@ -125,19 +125,19 @@ Step 1: Performing Floorplan
 #Rise and fall transition time
 ![Alt text](./day3_screenshots/20perOutputRise.png?raw=true "img_day3_10")	
 
-![Alt text](./day3_screenshots/20_80perOutputRiseValues.png?raw=true "img_day3_11")	
+![Alt text](./day3_screenshots/20_80perOutputRiseValuesNOutputFallValues.png?raw=true "img_day3_11")	
 
 	Rise Time= time taken for output to reach 80%  of 3.3v- time taken for output to reach 20%  of 3.3v
 		 = 2.245e^-9 - 2.182^e-9
 		 =0.063^e-9
 		 =63ps
 
-![Alt text](./day3_screenshots/20_80perOutputFallValues.png?raw=true "img_day3_12")	
+![Alt text](./day3_screenshots/20_80perOutputRiseValuesNOutputFallValues.png?raw=true "img_day3_12")	
 
 	Fall Time= time taken for output to reach 20% of 3.3v - time taken for output to reach 80% of 3.3v
-		 = 4.0944e^-9 - 4.052^e-9
-		 =0.0424^e-9
-		 =42.4ps
+		 = 4.0952e^-9 - 4.052^e-9
+		 =0.0432^e-9
+		 =43.2ps
 
 #Rise Cell Delay and Fall Cell Delay Calculation
 
@@ -149,14 +149,16 @@ Step 1: Performing Floorplan
 
 
 	Rise Cell Delay= time taken for output to rise 50%  of 3.3v - time taken for input to fall 50% of 3.3v
-				   = 2.2108e^-9 - 2.15e^-9
-				   =0.00608e^-9
-				   =60.8ps
+				   = 2.21103e^-9 - 2.15e^-9
+				   =0.06103e^-9
+				   =61.03ps
+
+![Alt text](./day3_screenshots/cellFallDelay.png?raw=true "img_day3_131")
 
 ![Alt text](./day3_screenshots/cellFallDelayValues.png?raw=true "img_day3_15")
 
 
-	Rise Cell Delay= time taken for output to fall 50%  of 3.3v - time taken for input to rise 50% of 3.3v
+	Fall Cell Delay= time taken for output to fall 50%  of 3.3v - time taken for input to rise 50% of 3.3v
 				   = 4.077e^-9 - 4.05e^-9
 				   =0.027e^-9
 				   =27ps				   
