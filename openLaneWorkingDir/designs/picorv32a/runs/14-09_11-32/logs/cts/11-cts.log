@@ -1,0 +1,238 @@
+OpenROAD 0.9.0 1415572a73
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+Notice 0: Reading LEF file:  /openLANE_flow/designs/picorv32a/runs/14-09_11-32/tmp/merged_unpadded.lef
+Notice 0:     Created 13 technology layers
+Notice 0:     Created 25 technology vias
+Notice 0:     Created 442 library cells
+Notice 0: Finished LEF file:  /openLANE_flow/designs/picorv32a/runs/14-09_11-32/tmp/merged_unpadded.lef
+Notice 0: 
+Reading DEF file: /openLANE_flow/designs/picorv32a/runs/14-09_11-32/results/placement/picorv32a.placement.def
+Notice 0: Design: picorv32a
+Notice 0:     Created 409 pins.
+Notice 0:     Created 25273 components and 143108 component-terminals.
+Notice 0:     Created 17667 nets and 59202 connections.
+Notice 0: Finished DEF file: /openLANE_flow/designs/picorv32a/runs/14-09_11-32/results/placement/picorv32a.placement.def
+[INFO]: Setting output delay to: 4.946000000000001
+[INFO]: Setting input delay to: 4.946000000000001
+[INFO]: Setting load to: 0.01765
+[INFO]: Configuring cts characterization...
+[INFO]: Performing clock tree synthesis...
+[INFO]: Looking for the following net(s): clk
+[INFO]: Running Clock Tree Synthesis...
+ *****************
+ * TritonCTS 2.0 *
+ *****************
+ *****************************
+ *  Create characterization  *
+ *****************************
+Number of created patterns = 50000.
+Number of created patterns = 100000.
+Number of created patterns = 150000.
+Number of created patterns = 200000.
+Number of created patterns = 250000.
+Number of created patterns = 300000.
+Number of created patterns = 313632.
+ Compiling LUT
+    Min. len    Max. len    Min. cap    Max. cap   Min. slew   Max. slew
+           2           8           1          39           1         318
+    [WARNING] 6336 wires are pure wire and no slew degration.
+    TritonCTS forced slew degradation on these wires.
+    Num wire segments: 313632
+    Num keys in characterization LUT: 2039
+    Actual min input cap: 2
+ **********************
+ *  Find clock roots  *
+ **********************
+ Running TritonCTS with user-specified clock roots: clk
+ ************************
+ *  Populate TritonCTS  *
+ ************************
+ Initializing clock nets
+ Looking for clock nets in the design
+ Net "clk" found
+ Initializing clock net for : "clk"
+ Clock net "clk" has 1613 sinks
+ TritonCTS found 1 clock nets.
+ ****************************
+ *  Check characterization  *
+ ****************************
+    The chacterization used 4 buffer(s) types. All of them are in the loaded DB.
+ ***********************
+ *  Build clock trees  *
+ ***********************
+ Generating H-Tree topology for net clk...
+    Tot. number of sinks: 1613
+    Sinks will be clustered in groups of 20 and a maximum diameter of 50 um
+    Number of static layers: 0
+ Wire segment unit: 13000 dbu (13 um)
+ Tot. number of sinks after clustering: 266
+ Normalized sink region: [(0.551154, 1.09615), (55.5688, 55.9646)]
+    Width:  55.0177
+    Height: 54.8685
+ Level 1
+    Direction: Horizontal
+    # sinks per sub-region: 133
+    Sub-region size: 27.5088 X 54.8685
+    Segment length (rounded): 14
+    Key: 9408 outSlew: 34 load: 1 length: 8 isBuffered: 1
+    Key: 1639 outSlew: 11 load: 1 length: 6 isBuffered: 1
+ Level 2
+    Direction: Vertical
+    # sinks per sub-region: 67
+    Sub-region size: 27.5088 X 27.4342
+    Segment length (rounded): 14
+    Key: 9417 outSlew: 34 load: 1 length: 8 isBuffered: 1
+    Key: 1639 outSlew: 11 load: 1 length: 6 isBuffered: 1
+ Level 3
+    Direction: Horizontal
+    # sinks per sub-region: 34
+    Sub-region size: 13.7544 X 27.4342
+    Segment length (rounded): 6
+    Key: 1881 outSlew: 23 load: 1 length: 6 isBuffered: 1
+ Level 4
+    Direction: Vertical
+    # sinks per sub-region: 17
+    Sub-region size: 13.7544 X 13.7171
+    Segment length (rounded): 6
+    Key: 1639 outSlew: 11 load: 1 length: 6 isBuffered: 1
+ Level 5
+    Direction: Horizontal
+    # sinks per sub-region: 9
+    Sub-region size: 6.87721 X 13.7171
+    Segment length (rounded): 4
+    Key: 337 outSlew: 11 load: 1 length: 4 isBuffered: 1
+ Stop criterion found. Max number of sinks is (15)
+ Building clock sub nets...
+ Number of sinks covered: 266
+ Clock topology of net "clk" done.
+ ****************
+ * Post CTS opt *
+ ****************
+ Avg. source sink dist: 24945.9 dbu.
+ Num outlier sinks: 13
+ ********************
+ * Write data to DB *
+ ********************
+ Writing clock net "clk" to DB
+    Created 330 clock buffers.
+    Minimum number of buffers in the clock path: 8.
+    Maximum number of buffers in the clock path: 10.
+    Created 330 clock nets.
+    Fanout distribution for the current clock = 2:22, 3:20, 4:27, 5:38, 6:35, 7:26, 8:38, 9:26, 10:23, 11:14, 12:5, 13:2, 14:1, 15:3.
+    Max level of the clock tree: 5.
+ ... End of TritonCTS execution.
+[INFO]: Repairing long wires on clock nets...
+[INFO]: Legalizing...
+[WARNING DPL-0011] Could not find power special net.
+Design Stats
+--------------------------------
+total instances         25603
+multi row instances         0
+fixed instances          7708
+nets                    17997
+design area          517276.1 u^2
+fixed area            10965.5 u^2
+movable area         197823.5 u^2
+utilization                39 %
+utilization padded         41 %
+rows                      264
+row height                2.7 u
+
+Placement Analysis
+--------------------------------
+total displacement     2566.8 u
+average displacement      0.1 u
+max displacement          9.1 u
+original HPWL        897407.4 u
+legalized HPWL       912549.9 u
+delta HPWL                  2 %
+
+[INFO DPL-0020] Mirrored 6744 instances
+[INFO DPL-0021] HPWL before          912549.9 u
+[INFO DPL-0022] HPWL after           897915.2 u
+[INFO DPL-0023] HPWL delta               -1.6 %
+No paths found.
+Startpoint: _31195_ (rising edge-triggered flip-flop clocked by clk)
+Endpoint: _31195_ (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: min
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                  0.00    0.00    0.00 ^ _31195_/CLK (sky130_fd_sc_hd__dfxtp_1)
+                  0.06    0.56    0.56 v _31195_/Q (sky130_fd_sc_hd__dfxtp_1)
+     2    0.00                           cpuregs[0][0] (net)
+                  0.06    0.00    0.56 v _18491_/A (sky130_fd_sc_hd__clkbuf_1)
+                  0.04    0.15    0.71 v _18491_/X (sky130_fd_sc_hd__clkbuf_1)
+     1    0.00                           _02835_ (net)
+                  0.04    0.00    0.71 v _31195_/D (sky130_fd_sc_hd__dfxtp_1)
+                                  0.71   data arrival time
+
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          0.00    0.00   clock reconvergence pessimism
+                                  0.00 ^ _31195_/CLK (sky130_fd_sc_hd__dfxtp_1)
+                         -0.11   -0.11   library hold time
+                                 -0.11   data required time
+-----------------------------------------------------------------------------
+                                 -0.11   data required time
+                                 -0.71   data arrival time
+-----------------------------------------------------------------------------
+                                  0.82   slack (MET)
+
+
+Startpoint: resetn (input port clocked by clk)
+Endpoint: mem_la_read (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          4.95    4.95 ^ input external delay
+                  0.02    0.01    4.95 ^ resetn (in)
+     1    0.00                           resetn (net)
+                  0.02    0.00    4.95 ^ input101/A (sky130_fd_sc_hd__buf_4)
+                  0.15    0.18    5.13 ^ input101/X (sky130_fd_sc_hd__buf_4)
+     7    0.05                           net101 (net)
+                  0.15    0.01    5.14 ^ _15304_/A (sky130_fd_sc_hd__clkbuf_4)
+                  0.12    0.23    5.37 ^ _15304_/X (sky130_fd_sc_hd__clkbuf_4)
+     6    0.04                           _12638_ (net)
+                  0.12    0.00    5.37 ^ _17093_/C (sky130_fd_sc_hd__nand3_4)
+                  0.09    0.09    5.45 v _17093_/Y (sky130_fd_sc_hd__nand3_4)
+     4    0.03                           _13857_ (net)
+                  0.09    0.00    5.46 v _18867_/B1 (sky130_fd_sc_hd__a21oi_4)
+                  0.34    0.21    5.67 ^ _18867_/Y (sky130_fd_sc_hd__a21oi_4)
+     1    0.06                           net199 (net)
+                  0.34    0.02    5.69 ^ output199/A (sky130_fd_sc_hd__clkbuf_2)
+                  0.09    0.14    5.83 ^ output199/X (sky130_fd_sc_hd__clkbuf_2)
+     1    0.02                           mem_la_read (net)
+                  0.09    0.00    5.83 ^ mem_la_read (out)
+                                  5.83   data arrival time
+
+                  0.00   24.73   24.73   clock clk (rise edge)
+                          0.00   24.73   clock network delay (ideal)
+                          0.00   24.73   clock reconvergence pessimism
+                         -4.95   19.78   output external delay
+                                 19.78   data required time
+-----------------------------------------------------------------------------
+                                 19.78   data required time
+                                 -5.83   data arrival time
+-----------------------------------------------------------------------------
+                                 13.95   slack (MET)
+
+
+No paths found.
+wns 0.00
+tns 0.00
+Clock clk
+Latency      CRPR       Skew
+_32089_/CLK ^
+   1.65
+_31391_/CLK ^
+   2.96      0.00      -1.31
+

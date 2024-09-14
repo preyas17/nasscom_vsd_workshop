@@ -1,0 +1,153 @@
+OpenROAD 0.9.0 1415572a73
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+Notice 0: Reading LEF file:  /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/merged_unpadded.lef
+Notice 0:     Created 13 technology layers
+Notice 0:     Created 25 technology vias
+Notice 0:     Created 442 library cells
+Notice 0: Finished LEF file:  /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/merged_unpadded.lef
+Notice 0: 
+Reading DEF file: /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/floorplan/55-verilog2def_openroad.def
+Notice 0: Design: picorv32a
+Notice 0:     Created 17139 components and 124080 component-terminals.
+Notice 0:     Created 17154 nets and 58298 connections.
+Notice 0: Finished DEF file: /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/floorplan/55-verilog2def_openroad.def
+[INFO GPL-0002] DBU: 1000
+[INFO GPL-0003] SiteSize: 460 2720
+[INFO GPL-0004] CoreAreaLxLy: 5520 10880
+[INFO GPL-0005] CoreAreaUxUy: 608120 612000
+[INFO GPL-0006] NumInstances: 17139
+[INFO GPL-0007] NumPlaceInstances: 17139
+[INFO GPL-0008] NumFixedInstances: 0
+[INFO GPL-0009] NumDummyInstances: 0
+[INFO GPL-0010] NumNets: 17154
+[INFO GPL-0011] NumPins: 58298
+[INFO GPL-0012] DieAreaLxLy: 0 0
+[INFO GPL-0013] DieAreaUxUy: 613915 624635
+[INFO GPL-0014] CoreAreaLxLy: 5520 10880
+[INFO GPL-0015] CoreAreaUxUy: 608120 612000
+[INFO GPL-0016] CoreArea: 362234912000
+[INFO GPL-0017] NonPlaceInstsArea: 0
+[INFO GPL-0018] PlaceInstsArea: 181730544000
+[INFO GPL-0019] Util(%): 50.17
+[INFO GPL-0020] StdInstsArea: 181730544000
+[INFO GPL-0021] MacroInstsArea: 0
+Begin InitialPlace
+[InitialPlace]  Iter: 1 CG Error: 0.00010139 HPWL: 142820500
+[InitialPlace]  Iter: 2 CG Error: 0.00005181 HPWL: 154661853
+[InitialPlace]  Iter: 3 CG Error: 0.00004864 HPWL: 155377107
+[InitialPlace]  Iter: 4 CG Error: 0.00005218 HPWL: 156295656
+[InitialPlace]  Iter: 5 CG Error: 0.00005021 HPWL: 156148572
+[InitialPlace]  Iter: 6 CG Error: 0.00005053 HPWL: 156496006
+[InitialPlace]  Iter: 7 CG Error: 0.00004934 HPWL: 156274174
+[InitialPlace]  Iter: 8 CG Error: 0.00005246 HPWL: 156667611
+[InitialPlace]  Iter: 9 CG Error: 0.00004796 HPWL: 156336491
+[InitialPlace]  Iter: 10 CG Error: 0.00005086 HPWL: 156670807
+[InitialPlace]  Iter: 11 CG Error: 0.00004838 HPWL: 156341810
+[InitialPlace]  Iter: 12 CG Error: 0.00005095 HPWL: 156712492
+[InitialPlace]  Iter: 13 CG Error: 0.00004836 HPWL: 156410925
+[InitialPlace]  Iter: 14 CG Error: 0.00005196 HPWL: 156682122
+[InitialPlace]  Iter: 15 CG Error: 0.00004864 HPWL: 156358571
+[InitialPlace]  Iter: 16 CG Error: 0.00004971 HPWL: 156753737
+[InitialPlace]  Iter: 17 CG Error: 0.00004866 HPWL: 156402498
+[InitialPlace]  Iter: 18 CG Error: 0.00005285 HPWL: 156678025
+[InitialPlace]  Iter: 19 CG Error: 0.00004995 HPWL: 156391392
+[InitialPlace]  Iter: 20 CG Error: 0.00004922 HPWL: 156682307
+End InitialPlace
+[INFO GPL-0031] FillerInit: NumGCells: 18835
+[INFO GPL-0032] FillerInit: NumGNets: 17154
+[INFO GPL-0033] FillerInit: NumGPins: 58298
+[INFO GPL-0023] TargetDensity: 0.55
+[INFO GPL-0024] AveragePlaceInstArea: 10603334
+[INFO GPL-0025] IdealBinArea: 19278788
+[INFO GPL-0026] IdealBinCnt: 18789
+[INFO GPL-0027] TotalBinArea: 362234912000
+[INFO GPL-0028] BinCnt: 128 128
+[INFO GPL-0029] BinSize: 4708 4697
+[INFO GPL-0030] NumBins: 16384
+Begin NesterovInit
+End NesterovInit
+[NesterovSolve] Iter: 1 overflow: 0.999097 HPWL: 27933431
+[NesterovSolve] Iter: 10 overflow: 0.99911 HPWL: 28675666
+[NesterovSolve] Iter: 20 overflow: 0.999104 HPWL: 28691776
+[NesterovSolve] Iter: 30 overflow: 0.999098 HPWL: 28695195
+[NesterovSolve] Iter: 40 overflow: 0.999098 HPWL: 28698937
+[NesterovSolve] Iter: 50 overflow: 0.999098 HPWL: 28703012
+[NesterovSolve] Iter: 60 overflow: 0.999098 HPWL: 28704376
+[NesterovSolve] Iter: 70 overflow: 0.999098 HPWL: 28704520
+[NesterovSolve] Iter: 80 overflow: 0.999098 HPWL: 28704272
+[NesterovSolve] Iter: 90 overflow: 0.999098 HPWL: 28704418
+[NesterovSolve] Iter: 100 overflow: 0.999098 HPWL: 28703707
+[NesterovSolve] Iter: 110 overflow: 0.999098 HPWL: 28703047
+[NesterovSolve] Iter: 120 overflow: 0.999097 HPWL: 28705793
+[NesterovSolve] Iter: 130 overflow: 0.999096 HPWL: 28717094
+[NesterovSolve] Iter: 140 overflow: 0.999094 HPWL: 28758467
+[NesterovSolve] Iter: 150 overflow: 0.998891 HPWL: 28880508
+[NesterovSolve] Iter: 160 overflow: 0.998591 HPWL: 29267478
+[NesterovSolve] Iter: 170 overflow: 0.998144 HPWL: 30391581
+[NesterovSolve] Iter: 180 overflow: 0.997162 HPWL: 32849837
+[NesterovSolve] Iter: 190 overflow: 0.995988 HPWL: 37031593
+[NesterovSolve] Iter: 200 overflow: 0.993984 HPWL: 43349486
+[NesterovSolve] Iter: 210 overflow: 0.991362 HPWL: 52620125
+[NesterovSolve] Iter: 220 overflow: 0.987343 HPWL: 64878954
+[NesterovSolve] Iter: 230 overflow: 0.981301 HPWL: 79151127
+[NesterovSolve] Iter: 240 overflow: 0.972869 HPWL: 95452050
+[NesterovSolve] Iter: 250 overflow: 0.962314 HPWL: 114951589
+[NesterovSolve] Iter: 260 overflow: 0.947646 HPWL: 138664962
+[NesterovSolve] Iter: 270 overflow: 0.928923 HPWL: 166006528
+[NesterovSolve] Iter: 280 overflow: 0.905653 HPWL: 195984861
+[NesterovSolve] Iter: 290 overflow: 0.87897 HPWL: 227536285
+[NesterovSolve] Iter: 300 overflow: 0.848805 HPWL: 259994886
+[NesterovSolve] Iter: 310 overflow: 0.814808 HPWL: 292711026
+[NesterovSolve] Iter: 320 overflow: 0.777925 HPWL: 324887257
+[NesterovSolve] Iter: 330 overflow: 0.73471 HPWL: 357563067
+[NesterovSolve] Iter: 340 overflow: 0.689654 HPWL: 391439834
+[NesterovSolve] Iter: 350 overflow: 0.644002 HPWL: 426760551
+[NesterovSolve] Iter: 360 overflow: 0.597595 HPWL: 458108826
+[NesterovSolve] Iter: 370 overflow: 0.546395 HPWL: 482412319
+[NesterovSolve] Iter: 380 overflow: 0.494328 HPWL: 504515354
+[NesterovSolve] Iter: 390 overflow: 0.442311 HPWL: 524854652
+[NesterovSolve] Iter: 400 overflow: 0.401112 HPWL: 543352207
+[NesterovSolve] Iter: 410 overflow: 0.358462 HPWL: 553460530
+[NesterovSolve] Iter: 420 overflow: 0.327682 HPWL: 559442052
+[NesterovSolve] Iter: 430 overflow: 0.302246 HPWL: 562073138
+[NesterovSolve] Iter: 440 overflow: 0.274209 HPWL: 564532054
+[NesterovSolve] Iter: 450 overflow: 0.24699 HPWL: 565882861
+[NesterovSolve] Iter: 460 overflow: 0.223353 HPWL: 567417598
+[NesterovSolve] Iter: 470 overflow: 0.200407 HPWL: 568521815
+[NesterovSolve] Iter: 480 overflow: 0.179531 HPWL: 569626809
+[NesterovSolve] Iter: 490 overflow: 0.15845 HPWL: 570664657
+[NesterovSolve] Iter: 500 overflow: 0.140905 HPWL: 571662873
+[NesterovSolve] Iter: 510 overflow: 0.123197 HPWL: 572698896
+[NesterovSolve] Iter: 520 overflow: 0.107785 HPWL: 573774508
+[NesterovSolve] Finished with Overflow: 0.099807
+create_clock [get_ports $::env(CLOCK_PORT)]  -name $::env(CLOCK_PORT)  -period $::env(CLOCK_PERIOD)
+[WARNING STA-0337] port 'clk' not found.
+set input_delay_value [expr $::env(CLOCK_PERIOD) * $::env(IO_PCT)]
+set output_delay_value [expr $::env(CLOCK_PERIOD) * $::env(IO_PCT)]
+puts "\[INFO\]: Setting output delay to: $output_delay_value"
+[INFO]: Setting output delay to: 8.0
+puts "\[INFO\]: Setting input delay to: $input_delay_value"
+[INFO]: Setting input delay to: 8.0
+set_max_fanout $::env(SYNTH_MAX_FANOUT) [current_design]
+set clk_indx [lsearch [all_inputs] [get_port $::env(CLOCK_PORT)]]
+[WARNING STA-0337] port 'clk' not found.
+#set rst_indx [lsearch [all_inputs] [get_port resetn]]
+set all_inputs_wo_clk [lreplace [all_inputs] $clk_indx $clk_indx]
+#set all_inputs_wo_clk_rst [lreplace $all_inputs_wo_clk $rst_indx $rst_indx]
+set all_inputs_wo_clk_rst $all_inputs_wo_clk
+# correct resetn
+set_input_delay $input_delay_value  -clock [get_clocks $::env(CLOCK_PORT)] $all_inputs_wo_clk_rst
+#set_input_delay 0.0 -clock [get_clocks $::env(CLOCK_PORT)] {resetn}
+set_output_delay $output_delay_value  -clock [get_clocks $::env(CLOCK_PORT)] [all_outputs]
+# TODO set this as parameter
+set_driving_cell -lib_cell $::env(SYNTH_DRIVING_CELL) -pin $::env(SYNTH_DRIVING_CELL_PIN) [all_inputs]
+set cap_load [expr $::env(SYNTH_CAP_LOAD) / 1000.0]
+puts "\[INFO\]: Setting load to: $cap_load"
+[INFO]: Setting load to: 0.01765
+set_load  $cap_load [all_outputs]
+No paths found.
+No paths found.
+No paths found.
+wns 0.00
+tns 0.00

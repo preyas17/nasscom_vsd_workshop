@@ -1,0 +1,43 @@
+OpenROAD 0.9.0 1415572a73
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+Notice 0: Reading LEF file:  /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/merged_unpadded.lef
+Notice 0:     Created 13 technology layers
+Notice 0:     Created 25 technology vias
+Notice 0:     Created 442 library cells
+Notice 0: Finished LEF file:  /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/merged_unpadded.lef
+Notice 0: 
+Reading DEF file: /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/placement/82-resizer.def
+Notice 0: Design: picorv32a
+Notice 0:     Created 409 pins.
+Notice 0:     Created 24478 components and 141738 component-terminals.
+Notice 0:     Created 17739 nets and 59346 connections.
+Notice 0: Finished DEF file: /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/placement/82-resizer.def
+[WARNING DPL-0011] Could not find power special net.
+Design Stats
+--------------------------------
+total instances         24478
+multi row instances         0
+fixed instances          6841
+nets                    17739
+design area          452753.0 u^2
+fixed area             9795.6 u^2
+movable area         211856.9 u^2
+utilization                48 %
+utilization padded         68 %
+rows                      247
+row height                2.7 u
+
+Placement Analysis
+--------------------------------
+total displacement        0.0 u
+average displacement      0.0 u
+max displacement          0.0 u
+original HPWL        958837.2 u
+legalized HPWL       974863.2 u
+delta HPWL                  2 %
+
+[INFO DPL-0020] Mirrored 6999 instances
+[INFO DPL-0021] HPWL before          974863.2 u
+[INFO DPL-0022] HPWL after           958837.2 u
+[INFO DPL-0023] HPWL delta               -1.6 %

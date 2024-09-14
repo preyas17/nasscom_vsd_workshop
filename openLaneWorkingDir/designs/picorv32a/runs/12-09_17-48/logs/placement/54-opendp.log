@@ -1,0 +1,153 @@
+OpenROAD 0.9.0 1415572a73
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+Notice 0: Reading LEF file:  /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/merged_unpadded.lef
+Notice 0:     Created 13 technology layers
+Notice 0:     Created 25 technology vias
+Notice 0:     Created 442 library cells
+Notice 0: Finished LEF file:  /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/merged_unpadded.lef
+Notice 0: 
+Reading DEF file: /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/placement/51-resizer.def
+Notice 0: Design: picorv32a
+Notice 0:     Created 409 pins.
+Notice 0:     Created 23085 components and 138804 component-terminals.
+Notice 0:     Created 17728 nets and 59324 connections.
+Notice 0: Finished DEF file: /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/placement/51-resizer.def
+[WARNING DPL-0011] Could not find power special net.
+Design Stats
+--------------------------------
+total instances         23085
+multi row instances         0
+fixed instances          5459
+nets                    17728
+design area          362234.9 u^2
+fixed area             7936.4 u^2
+movable area         210423.1 u^2
+utilization                59 %
+utilization padded         84 %
+rows                      221
+row height                2.7 u
+
+[WARNING DPL-0019] detailed placement failed on _26842_
+[WARNING DPL-0019] detailed placement failed on _27163_
+[WARNING DPL-0019] detailed placement failed on _27878_
+[WARNING DPL-0019] detailed placement failed on _27896_
+[WARNING DPL-0019] detailed placement failed on _28138_
+[WARNING DPL-0019] detailed placement failed on _28407_
+[WARNING DPL-0019] detailed placement failed on _28299_
+[WARNING DPL-0019] detailed placement failed on _26676_
+Placement Analysis
+--------------------------------
+total displacement   113633.7 u
+average displacement      4.9 u
+max displacement        493.3 u
+original HPWL        1743825.7 u
+legalized HPWL       1908124.1 u
+delta HPWL                  9 %
+
+[INFO DPL-0020] Mirrored 7434 instances
+[INFO DPL-0021] HPWL before          1908124.1 u
+[INFO DPL-0022] HPWL after           1892303.3 u
+[INFO DPL-0023] HPWL delta               -0.8 %
+[WARNING DPL-0005] Overlap check failed (101).
+ _26676_ overlaps _26671_
+ _26677_ overlaps _25742_
+ _26678_ overlaps _25960_
+ _26687_ overlaps _25664_
+ _26702_ overlaps _26508_
+ _26840_ overlaps _26515_
+ _26842_ overlaps _25936_
+ _26853_ overlaps _26826_
+ _26854_ overlaps _26690_
+ _27008_ overlaps _25064_
+ _27163_ overlaps _26656_
+ _27165_ overlaps _25981_
+ _27311_ overlaps _25761_
+ _27335_ overlaps _26850_
+ _27370_ overlaps _27170_
+ _27371_ overlaps _27010_
+ _27373_ overlaps _27012_
+ _27393_ overlaps _26855_
+ _27402_ overlaps _27174_
+ _27408_ overlaps _26852_
+ _27427_ overlaps _27012_
+ _27438_ overlaps _26851_
+ _27449_ overlaps _26849_
+ _27486_ overlaps _26157_
+ _27487_ overlaps _27481_
+ _27489_ overlaps _27318_
+ _27514_ overlaps _27317_
+ _27547_ overlaps _27485_
+ _27549_ overlaps _27485_
+ _27561_ overlaps _27310_
+ _27648_ overlaps _26095_
+ _27649_ overlaps _25961_
+ _27651_ overlaps _25824_
+ _27878_ overlaps _27740_
+ _27893_ overlaps _27712_
+ _27894_ overlaps _27739_
+ _27896_ overlaps _27713_
+ _27897_ overlaps _27773_
+ _27899_ overlaps _27742_
+ _27900_ overlaps _27881_
+ _27901_ overlaps _27673_
+ _27902_ overlaps _27883_
+ _27907_ overlaps _27747_
+ _27924_ overlaps _27892_
+ _27926_ overlaps _27892_
+ _27928_ overlaps _27903_
+ _27932_ overlaps _27915_
+ _27964_ overlaps _27906_
+ _28000_ overlaps _27906_
+ _28049_ overlaps _27879_
+ _28057_ overlaps _27998_
+ _28059_ overlaps _27759_
+ _28060_ overlaps _27935_
+ _28065_ overlaps _27885_
+ _28138_ overlaps _27394_
+ _28180_ overlaps _27934_
+ _28210_ overlaps _28137_
+ _28211_ overlaps _24209_
+ _28267_ overlaps _27614_
+ _28394_ overlaps _24124_
+ _28395_ overlaps _28156_
+ _28396_ overlaps _24227_
+ _28400_ overlaps _28149_
+ _28416_ overlaps _28299_
+ _28483_ overlaps _27683_
+ _28496_ overlaps _28285_
+ _28498_ overlaps _28357_
+ _28500_ overlaps _24991_
+ _28590_ overlaps _28215_
+ _28598_ overlaps _28266_
+ _28603_ overlaps _28266_
+ _28611_ overlaps _28266_
+ _28613_ overlaps _28385_
+ _28614_ overlaps _28399_
+ _28616_ overlaps _28385_
+ _28617_ overlaps _28384_
+ _28623_ overlaps _28385_
+ _28630_ overlaps _28495_
+ _28675_ overlaps _28383_
+ _28676_ overlaps _28361_
+ _28681_ overlaps _28209_
+ _28701_ overlaps _28495_
+ _28706_ overlaps _28209_
+ _28708_ overlaps _28377_
+ _28711_ overlaps _28360_
+ _28724_ overlaps _28209_
+ _28801_ overlaps _24444_
+ _28808_ overlaps _28407_
+ _28866_ overlaps _28299_
+ _29327_ overlaps _28395_
+ _29331_ overlaps _28501_
+ _29338_ overlaps _26857_
+ _29350_ overlaps _26689_
+ _29354_ overlaps _26689_
+ _29359_ overlaps _26682_
+ _31101_ overlaps _25977_
+ _31102_ overlaps _26500_
+ _31105_ overlaps _26140_
+ input76 overlaps _26857_
+ input86 overlaps _26686_
+ input94 overlaps _26684_

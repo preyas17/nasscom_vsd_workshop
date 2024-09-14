@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<report-database>
+    <categories>
+        <category>
+            <name>MetSpc</name>
+        </category>
+    </categories>
+    <cells>
+        <cell>
+            <name>picorv32a</name>
+        </cell>
+    </cells>
+    <items>
+        <item>
+            <category>MetSpc</category>
+            <cell>picorv32a</cell>
+            <visited>false</visited>
+            <multiplicity>1</multiplicity>
+            <values>
+                <value>box: (152.21,374.33;152.345,374.425)</value>
+                <value>text: 'On layer li1'</value>
+                <value>text: 'Between _04822_ _11908_'</value>
+            </values>
+        </item>
+    </items>
+</report-database>

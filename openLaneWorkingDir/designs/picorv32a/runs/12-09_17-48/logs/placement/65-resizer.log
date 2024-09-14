@@ -1,0 +1,1159 @@
+OpenROAD 0.9.0 1415572a73
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+Notice 0: Reading LEF file:  /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/merged_unpadded.lef
+Notice 0:     Created 13 technology layers
+Notice 0:     Created 25 technology vias
+Notice 0:     Created 442 library cells
+Notice 0: Finished LEF file:  /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/merged_unpadded.lef
+Notice 0: 
+Reading DEF file: /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/placement/65-replace.def
+Notice 0: Design: picorv32a
+Notice 0:     Created 409 pins.
+Notice 0:     Created 22598 components and 135882 component-terminals.
+Notice 0:     Created 17241 nets and 58350 connections.
+Notice 0: Finished DEF file: /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/placement/65-replace.def
+create_clock [get_ports $::env(CLOCK_PORT)]  -name $::env(CLOCK_PORT)  -period $::env(CLOCK_PERIOD)
+set input_delay_value [expr $::env(CLOCK_PERIOD) * $::env(IO_PCT)]
+set output_delay_value [expr $::env(CLOCK_PERIOD) * $::env(IO_PCT)]
+puts "\[INFO\]: Setting output delay to: $output_delay_value"
+[INFO]: Setting output delay to: 8.0
+puts "\[INFO\]: Setting input delay to: $input_delay_value"
+[INFO]: Setting input delay to: 8.0
+set_max_fanout $::env(SYNTH_MAX_FANOUT) [current_design]
+set clk_indx [lsearch [all_inputs] [get_port $::env(CLOCK_PORT)]]
+#set rst_indx [lsearch [all_inputs] [get_port resetn]]
+set all_inputs_wo_clk [lreplace [all_inputs] $clk_indx $clk_indx]
+#set all_inputs_wo_clk_rst [lreplace $all_inputs_wo_clk $rst_indx $rst_indx]
+set all_inputs_wo_clk_rst $all_inputs_wo_clk
+# correct resetn
+set_input_delay $input_delay_value  -clock [get_clocks $::env(CLOCK_PORT)] $all_inputs_wo_clk_rst
+#set_input_delay 0.0 -clock [get_clocks $::env(CLOCK_PORT)] {resetn}
+set_output_delay $output_delay_value  -clock [get_clocks $::env(CLOCK_PORT)] [all_outputs]
+# TODO set this as parameter
+set_driving_cell -lib_cell $::env(SYNTH_DRIVING_CELL) -pin $::env(SYNTH_DRIVING_CELL_PIN) [all_inputs]
+set cap_load [expr $::env(SYNTH_CAP_LOAD) / 1000.0]
+puts "\[INFO\]: Setting load to: $cap_load"
+[INFO]: Setting load to: 0.01765
+set_load  $cap_load [all_outputs]
+[INFO RSZ-0027] Inserted 101 input buffers.
+[INFO RSZ-0028] Inserted 307 output buffers.
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _16245_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _16255_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _16275_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _24397_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _23049_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _28181_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _27323_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _25420_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _29181_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _28796_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _27919_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _27479_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _28170_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _27312_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _25981_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _29035_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _28602_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _27779_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _26998_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _29176_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _25407_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _28951_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _27469_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _27154_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _28794_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _28598_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _27633_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _26846_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _26488_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _26169_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _24179_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _22192_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _27783_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _26278_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _24382_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _23185_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _28979_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _28894_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _28141_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _27620_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _27454_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _26146_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _25113_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _22009_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _21912_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _28719_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _27427_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _27266_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _26951_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _24850_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _22613_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _27762_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _27602_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _26645_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _25116_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _23113_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _22382_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _28036_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _26408_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _24459_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _23790_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _23168_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _22955_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _22824_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _21708_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _22965_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_4 _28277_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _28234_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _28107_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _27819_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _26816_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _26295_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _25345_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _24095_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _21914_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _21897_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _28623_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _26909_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _26665_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _24502_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _23966_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _23926_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _22877_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _20359_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_16 _28826_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _28030_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _25377_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _23587_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _23400_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _23289_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _27585_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _25123_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _24528_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _24287_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _24673_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_4 _15452_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _15449_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _27823_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _24270_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _24033_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _23763_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _20007_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_4 _21113_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _18823_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _15999_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _28007_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_4 _25940_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _16030_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _16003_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _15583_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _17610_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_4 _17546_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _20919_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _18905_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _18794_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _18223_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _17615_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _17551_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_4 _17531_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _15771_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_4 _15486_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _21374_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _20749_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _20694_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _20486_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _18976_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _18817_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _18712_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _18204_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _18197_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _18190_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _18151_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _18144_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_4 _18131_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _18108_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _18101_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _18093_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _18080_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _17812_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _17662_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _17643_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_4 _17598_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_4 _17594_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_4 _17535_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _16532_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _16504_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _20870_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_4 _20204_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19665_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _19649_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19633_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19615_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19612_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19607_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19602_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19600_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19588_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19573_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19559_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19546_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19524_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19522_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19510_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19509_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19492_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19488_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19486_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19485_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19466_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19462_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19459_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19458_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19451_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19445_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19438_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19422_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19406_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19399_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19389_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19383_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19379_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19378_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19342_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19335_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19319_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19304_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19302_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19277_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19276_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19275_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19274_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19271_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19269_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19262_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19259_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19256_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19252_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19250_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19243_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19241_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19234_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19218_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19217_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19213_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19210_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19204_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19201_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19195_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19187_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19186_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19182_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19180_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19175_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19172_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19161_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19160_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19156_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19126_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19125_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19124_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19118_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19116_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19093_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19076_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19074_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19073_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19068_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19059_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19056_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19038_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19021_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19018_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19015_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _19001_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _18769_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _18666_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_4 _18226_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_4 _18209_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _18157_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _18123_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _18086_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _18065_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _18045_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_4 _18038_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _18031_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _18024_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _17809_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _17777_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _17628_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _17569_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _17554_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_4 _17510_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _16892_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _16575_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _16213_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _16143_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _16140_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _16139_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _16138_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _16137_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _16130_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _16129_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _16126_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _16125_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _16124_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _16123_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _16122_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _16121_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _16120_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _16119_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _16118_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _16117_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _16116_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _16115_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _15942_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _15903_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _15882_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _15575_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _15534_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _15517_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _15504_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _15441_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _15439_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _15404_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _15398_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _15379_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _15372_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _15340_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_2 _15336_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _15327_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_2 _15302_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__inv_1 _20325_
+Notice 0: Failed(termSize) to swap: sky130_vsdinv -> sky130_fd_sc_hd__clkinv_4 _15307_
+[INFO RSZ-0034] Found 50 slew violations.
+[INFO RSZ-0036] Found 48 capacitance violations.
+[INFO RSZ-0038] Inserted 79 buffers in 50 nets.
+[INFO RSZ-0039] Resized 12658 instances.
+[WARNING DPL-0011] Could not find power special net.
+Design Stats
+--------------------------------
+total instances         23085
+multi row instances         0
+fixed instances          5459
+nets                    17728
+design area          362234.9 u^2
+fixed area             7936.4 u^2
+movable area         210423.1 u^2
+utilization                59 %
+utilization padded         91 %
+rows                      221
+row height                2.7 u
+
+[WARNING DPL-0019] detailed placement failed on _26673_
+[WARNING DPL-0019] detailed placement failed on _25789_
+[WARNING DPL-0019] detailed placement failed on _26271_
+[WARNING DPL-0019] detailed placement failed on _26647_
+[WARNING DPL-0019] detailed placement failed on _27268_
+[WARNING DPL-0019] detailed placement failed on _27426_
+[WARNING DPL-0019] detailed placement failed on _27260_
+[WARNING DPL-0019] detailed placement failed on _27578_
+[WARNING DPL-0019] detailed placement failed on _27610_
+[WARNING DPL-0019] detailed placement failed on _27156_
+[WARNING DPL-0019] detailed placement failed on _27295_
+[WARNING DPL-0018] detailed placement failed on output115.
+[WARNING DPL-0018] detailed placement failed on output129.
+[WARNING DPL-0018] detailed placement failed on output141.
+[WARNING DPL-0018] detailed placement failed on output143.
+[WARNING DPL-0018] detailed placement failed on output146.
+[WARNING DPL-0018] detailed placement failed on output148.
+[WARNING DPL-0018] detailed placement failed on output152.
+[WARNING DPL-0018] detailed placement failed on output159.
+[WARNING DPL-0018] detailed placement failed on output162.
+[WARNING DPL-0018] detailed placement failed on output163.
+[WARNING DPL-0019] detailed placement failed on _28182_
+[WARNING DPL-0018] detailed placement failed on output198.
+[WARNING DPL-0018] detailed placement failed on output199.
+[WARNING DPL-0018] detailed placement failed on output202.
+[WARNING DPL-0018] detailed placement failed on output211.
+[WARNING DPL-0018] detailed placement failed on output215.
+[WARNING DPL-0018] detailed placement failed on output226.
+[WARNING DPL-0018] detailed placement failed on output229.
+[WARNING DPL-0018] detailed placement failed on output234.
+[WARNING DPL-0018] detailed placement failed on output240.
+[WARNING DPL-0018] detailed placement failed on output243.
+[WARNING DPL-0019] detailed placement failed on _27917_
+[WARNING DPL-0018] detailed placement failed on output262.
+[WARNING DPL-0018] detailed placement failed on output271.
+[WARNING DPL-0018] detailed placement failed on output278.
+[WARNING DPL-0019] detailed placement failed on _28810_
+[WARNING DPL-0018] detailed placement failed on output283.
+[WARNING DPL-0018] detailed placement failed on output299.
+[WARNING DPL-0018] detailed placement failed on output305.
+[WARNING DPL-0018] detailed placement failed on output307.
+[WARNING DPL-0019] detailed placement failed on _26431_
+[WARNING DPL-0018] detailed placement failed on output322.
+[WARNING DPL-0018] detailed placement failed on output325.
+[WARNING DPL-0018] detailed placement failed on output330.
+[WARNING DPL-0018] detailed placement failed on output338.
+[WARNING DPL-0018] detailed placement failed on output342.
+[WARNING DPL-0018] detailed placement failed on output343.
+[WARNING DPL-0019] detailed placement failed on _26065_
+[WARNING DPL-0018] detailed placement failed on output345.
+[WARNING DPL-0018] detailed placement failed on output346.
+[WARNING DPL-0018] detailed placement failed on output349.
+[WARNING DPL-0019] detailed placement failed on _27920_
+[WARNING DPL-0018] detailed placement failed on output361.
+[WARNING DPL-0018] detailed placement failed on output362.
+[WARNING DPL-0018] detailed placement failed on output363.
+[WARNING DPL-0018] detailed placement failed on output365.
+[WARNING DPL-0018] detailed placement failed on output369.
+[WARNING DPL-0018] detailed placement failed on output378.
+[WARNING DPL-0018] detailed placement failed on output384.
+[WARNING DPL-0018] detailed placement failed on output388.
+[WARNING DPL-0018] detailed placement failed on output393.
+[WARNING DPL-0018] detailed placement failed on output394.
+[WARNING DPL-0019] detailed placement failed on _26065_
+[WARNING DPL-0018] detailed placement failed on output406.
+[WARNING DPL-0019] detailed placement failed on _24558_
+[WARNING DPL-0019] detailed placement failed on _24648_
+[WARNING DPL-0019] detailed placement failed on _24783_
+[WARNING DPL-0019] detailed placement failed on _25109_
+[WARNING DPL-0019] detailed placement failed on _24632_
+[WARNING DPL-0019] detailed placement failed on _24937_
+[WARNING DPL-0019] detailed placement failed on _25316_
+[WARNING DPL-0019] detailed placement failed on _25339_
+[WARNING DPL-0019] detailed placement failed on _26472_
+[WARNING DPL-0019] detailed placement failed on _26731_
+[WARNING DPL-0019] detailed placement failed on _26821_
+[WARNING DPL-0019] detailed placement failed on _26635_
+[WARNING DPL-0019] detailed placement failed on _25433_
+[WARNING DPL-0019] detailed placement failed on _26975_
+[WARNING DPL-0019] detailed placement failed on _27295_
+[WARNING DPL-0019] detailed placement failed on _25761_
+[WARNING DPL-0018] detailed placement failed on _27487_.
+[WARNING DPL-0019] detailed placement failed on _25473_
+[WARNING DPL-0019] detailed placement failed on _27091_
+[WARNING DPL-0019] detailed placement failed on _27440_
+[WARNING DPL-0019] detailed placement failed on _27584_
+[WARNING DPL-0019] detailed placement failed on _27416_
+[WARNING DPL-0019] detailed placement failed on _27709_
+[WARNING DPL-0019] detailed placement failed on _28081_
+[WARNING DPL-0019] detailed placement failed on _28378_
+[WARNING DPL-0019] detailed placement failed on _24606_
+[WARNING DPL-0019] detailed placement failed on _28041_
+[WARNING DPL-0019] detailed placement failed on _24304_
+[WARNING DPL-0019] detailed placement failed on _24908_
+[WARNING DPL-0019] detailed placement failed on _27477_
+[WARNING DPL-0019] detailed placement failed on _24304_
+[WARNING DPL-0019] detailed placement failed on _26496_
+[WARNING DPL-0019] detailed placement failed on _24557_
+[WARNING DPL-0019] detailed placement failed on _26320_
+[WARNING DPL-0019] detailed placement failed on _24297_
+[WARNING DPL-0019] detailed placement failed on _25400_
+Placement Analysis
+--------------------------------
+total displacement   573385.5 u
+average displacement     24.8 u
+max displacement        472.8 u
+original HPWL        726802.7 u
+legalized HPWL       1759731.5 u
+delta HPWL                142 %
+
+[INFO DPL-0020] Mirrored 7454 instances
+[INFO DPL-0021] HPWL before          1759731.5 u
+[INFO DPL-0022] HPWL after           1743825.7 u
+[INFO DPL-0023] HPWL delta               -0.9 %
+[WARNING DPL-0004] Placed in rows check failed (47).
+ output115
+ output129
+ output141
+ output143
+ output146
+ output148
+ output152
+ output159
+ output162
+ output163
+ output198
+ output199
+ output202
+ output211
+ output215
+ output226
+ output229
+ output234
+ output240
+ output243
+ output262
+ output271
+ output278
+ output283
+ output299
+ output305
+ output307
+ output322
+ output325
+ output330
+ output338
+ output342
+ output343
+ output345
+ output346
+ output349
+ output361
+ output362
+ output363
+ output365
+ output369
+ output378
+ output384
+ output388
+ output393
+ output394
+ output406
+[WARNING DPL-0005] Overlap check failed (595).
+ _24323_ overlaps _24097_
+ _24558_ overlaps _23894_
+ _24563_ overlaps _24118_
+ _24645_ overlaps _23380_
+ _24648_ overlaps _23546_
+ _24649_ overlaps _23759_
+ _24650_ overlaps _24012_
+ _24673_ overlaps _24121_
+ _24698_ overlaps _24047_
+ _24760_ overlaps _24013_
+ _24762_ overlaps _24018_
+ _24768_ overlaps _24763_
+ _24774_ overlaps _24019_
+ _24776_ overlaps _24767_
+ _24779_ overlaps _23343_
+ _24783_ overlaps _24049_
+ _24784_ overlaps _24781_
+ _24785_ overlaps _24764_
+ _24850_ overlaps _24773_
+ _24890_ overlaps _23583_
+ _24894_ overlaps _24892_
+ _24897_ overlaps _24896_
+ _24909_ overlaps _24889_
+ _24937_ overlaps _24916_
+ _24941_ overlaps _23764_
+ _24942_ overlaps _24885_
+ _24950_ overlaps _24944_
+ _24951_ overlaps _24948_
+ _24954_ overlaps _24503_
+ _24958_ overlaps _24944_
+ _24965_ overlaps _23400_
+ _24966_ overlaps _24893_
+ _24968_ overlaps _24893_
+ _24973_ overlaps _24853_
+ _24975_ overlaps _24791_
+ _24976_ overlaps _24780_
+ _24979_ overlaps _24602_
+ _24982_ overlaps _24980_
+ _24984_ overlaps _24789_
+ _25026_ overlaps _24981_
+ _25028_ overlaps _24977_
+ _25029_ overlaps _24964_
+ _25031_ overlaps _24978_
+ _25032_ overlaps _24790_
+ _25050_ overlaps _24789_
+ _25103_ overlaps _24917_
+ _25109_ overlaps _24988_
+ _25114_ overlaps _23764_
+ _25173_ overlaps _23660_
+ _25174_ overlaps _24884_
+ _25176_ overlaps _24946_
+ _25196_ overlaps _24532_
+ _25200_ overlaps _25180_
+ _25201_ overlaps _24538_
+ _25202_ overlaps _25197_
+ _25205_ overlaps _24618_
+ _25222_ overlaps _24990_
+ _25223_ overlaps _25199_
+ _25226_ overlaps _24854_
+ _25280_ overlaps _25108_
+ _25281_ overlaps _25182_
+ _25283_ overlaps _25027_
+ _25316_ overlaps _24276_
+ _25322_ overlaps _25209_
+ _25341_ overlaps _25069_
+ _25352_ overlaps _25076_
+ _25360_ overlaps _25359_
+ _25398_ overlaps _25169_
+ _25403_ overlaps _25282_
+ _25406_ overlaps _24945_
+ _25407_ overlaps _25070_
+ _25421_ overlaps _25221_
+ _25425_ overlaps _25070_
+ _25426_ overlaps _25220_
+ _25513_ overlaps _25078_
+ _25515_ overlaps _25078_
+ _25579_ overlaps _25537_
+ _25581_ overlaps _25321_
+ _25582_ overlaps _24028_
+ _25585_ overlaps _24263_
+ _25600_ overlaps _24033_
+ _25601_ overlaps _25592_
+ _25609_ overlaps _25592_
+ _25613_ overlaps _25540_
+ _25614_ overlaps _25578_
+ _25670_ overlaps _25378_
+ _25680_ overlaps _25345_
+ _25699_ overlaps _25317_
+ _25717_ overlaps _25317_
+ _25722_ overlaps _25319_
+ _25762_ overlaps _25317_
+ _25792_ overlaps _25584_
+ _25796_ overlaps _25397_
+ _25797_ overlaps _25584_
+ _25799_ overlaps _25578_
+ _25812_ overlaps _25354_
+ _25818_ overlaps _23723_
+ _25849_ overlaps _25319_
+ _25866_ overlaps _25539_
+ _25874_ overlaps _25319_
+ _25913_ overlaps _25580_
+ _25916_ overlaps _24307_
+ _25967_ overlaps _25580_
+ _25982_ overlaps _25586_
+ _25983_ overlaps _23769_
+ _25988_ overlaps _25478_
+ _25990_ overlaps _25765_
+ _25991_ overlaps _25540_
+ _25992_ overlaps _25111_
+ _26003_ overlaps _22410_
+ _26005_ overlaps _25179_
+ _26006_ overlaps _25532_
+ _26014_ overlaps _23511_
+ _26016_ overlaps _24921_
+ _26032_ overlaps _23754_
+ _26053_ overlaps _25757_
+ _26058_ overlaps _25339_
+ _26063_ overlaps _25819_
+ _26098_ overlaps _25339_
+ _26161_ overlaps _25820_
+ _26165_ overlaps _25339_
+ _26169_ overlaps _25820_
+ _26172_ overlaps _25994_
+ _26202_ overlaps _25789_
+ _26210_ overlaps _25789_
+ _26211_ overlaps _25840_
+ _26217_ overlaps _25826_
+ _26228_ overlaps _25996_
+ _26236_ overlaps _25976_
+ _26268_ overlaps _25996_
+ _26271_ overlaps _23756_
+ _26276_ overlaps _26142_
+ _26304_ overlaps _25995_
+ _26307_ overlaps _25980_
+ _26311_ overlaps _26168_
+ _26312_ overlaps _25454_
+ _26313_ overlaps _25995_
+ _26324_ overlaps _24659_
+ _26328_ overlaps _25516_
+ _26333_ overlaps _25979_
+ _26352_ overlaps _25970_
+ _26355_ overlaps _25968_
+ _26360_ overlaps _23774_
+ _26369_ overlaps _25970_
+ _26393_ overlaps _25819_
+ _26397_ overlaps _25985_
+ _26398_ overlaps _25819_
+ _26399_ overlaps _25676_
+ _26402_ overlaps _25973_
+ _26406_ overlaps _25985_
+ _26408_ overlaps _25820_
+ _26447_ overlaps _26325_
+ _26449_ overlaps _26145_
+ _26472_ overlaps _26438_
+ _26496_ overlaps _25788_
+ _26499_ overlaps _26314_
+ _26501_ overlaps _25937_
+ _26503_ overlaps _25840_
+ _26506_ overlaps _25641_
+ _26508_ overlaps _26159_
+ _26513_ overlaps _25962_
+ _26522_ overlaps _25840_
+ _26553_ overlaps _25116_
+ _26557_ overlaps _26191_
+ _26559_ overlaps _26030_
+ _26610_ overlaps _26227_
+ _26612_ overlaps _26294_
+ _26620_ overlaps _26618_
+ _26629_ overlaps _26273_
+ _26635_ overlaps _24107_
+ _26644_ overlaps _26581_
+ _26647_ overlaps _25918_
+ _26653_ overlaps _26035_
+ _26654_ overlaps _26616_
+ _26662_ overlaps _26495_
+ _26666_ overlaps _26479_
+ _26672_ overlaps _25676_
+ _26675_ overlaps _26452_
+ _26678_ overlaps _25981_
+ _26681_ overlaps _25718_
+ _26686_ overlaps _25957_
+ _26689_ overlaps _26159_
+ _26691_ overlaps _26450_
+ _26701_ overlaps _25092_
+ _26703_ overlaps _25676_
+ _26705_ overlaps _25718_
+ _26722_ overlaps _26474_
+ _26723_ overlaps _26519_
+ _26733_ overlaps _26532_
+ _26752_ overlaps _25455_
+ _26753_ overlaps _26581_
+ _26754_ overlaps _26478_
+ _26768_ overlaps _26478_
+ _26788_ overlaps _26273_
+ _26792_ overlaps _25941_
+ _26798_ overlaps _26473_
+ _26801_ overlaps _26473_
+ _26815_ overlaps _26486_
+ _26816_ overlaps _26613_
+ _26817_ overlaps _26481_
+ _26820_ overlaps _26474_
+ _26822_ overlaps _26155_
+ _26834_ overlaps _26613_
+ _26836_ overlaps _26309_
+ _26846_ overlaps _26613_
+ _26848_ overlaps _26473_
+ _26857_ overlaps _26515_
+ _26858_ overlaps _26447_
+ _26860_ overlaps _26730_
+ _26892_ overlaps _26732_
+ _26909_ overlaps _26868_
+ _26911_ overlaps _26885_
+ _26914_ overlaps _26757_
+ _26916_ overlaps _26885_
+ _26919_ overlaps _26868_
+ _26933_ overlaps _26868_
+ _26951_ overlaps _26732_
+ _26958_ overlaps _26731_
+ _26960_ overlaps _26731_
+ _26964_ overlaps _26634_
+ _26974_ overlaps _26731_
+ _26978_ overlaps _26873_
+ _26985_ overlaps _26885_
+ _26987_ overlaps _26109_
+ _26993_ overlaps _26107_
+ _26994_ overlaps _26825_
+ _26995_ overlaps _26981_
+ _26998_ overlaps _26871_
+ _26999_ overlaps _26884_
+ _27006_ overlaps _26576_
+ _27008_ overlaps _25064_
+ _27009_ overlaps _26884_
+ _27012_ overlaps _25082_
+ _27013_ overlaps _26107_
+ _27019_ overlaps _26876_
+ _27021_ overlaps _26876_
+ _27038_ overlaps _26873_
+ _27039_ overlaps _26647_
+ _27043_ overlaps _26952_
+ _27046_ overlaps _26653_
+ _27069_ overlaps _26952_
+ _27070_ overlaps _26821_
+ _27073_ overlaps _26884_
+ _27076_ overlaps _26876_
+ _27078_ overlaps _26989_
+ _27091_ overlaps _24813_
+ _27110_ overlaps _26990_
+ _27127_ overlaps _26125_
+ _27130_ overlaps _27108_
+ _27132_ overlaps _26824_
+ _27134_ overlaps _27124_
+ _27135_ overlaps _27123_
+ _27139_ overlaps _26295_
+ _27140_ overlaps _27124_
+ _27143_ overlaps _27123_
+ _27144_ overlaps _27109_
+ _27147_ overlaps _27124_
+ _27148_ overlaps _27142_
+ _27152_ overlaps _27142_
+ _27154_ overlaps _27123_
+ _27155_ overlaps _27113_
+ _27157_ overlaps _27113_
+ _27158_ overlaps _25124_
+ _27163_ overlaps _25436_
+ _27171_ overlaps _26809_
+ _27172_ overlaps _26809_
+ _27196_ overlaps _26955_
+ _27225_ overlaps _26794_
+ _27234_ overlaps _26992_
+ _27260_ overlaps _27138_
+ _27267_ overlaps _26125_
+ _27281_ overlaps _27275_
+ _27282_ overlaps _27151_
+ _27286_ overlaps _26411_
+ _27292_ overlaps _27136_
+ _27295_ overlaps _25701_
+ _27310_ overlaps _26146_
+ _27311_ overlaps _25566_
+ _27322_ overlaps _25958_
+ _27324_ overlaps _26456_
+ _27331_ overlaps _27320_
+ _27332_ overlaps _27174_
+ _27335_ overlaps _26850_
+ _27336_ overlaps _27330_
+ _27337_ overlaps _26680_
+ _27370_ overlaps _27170_
+ _27371_ overlaps _27010_
+ _27392_ overlaps _26255_
+ _27393_ overlaps _26855_
+ _27395_ overlaps _26427_
+ _27400_ overlaps _26511_
+ _27402_ overlaps _26685_
+ _27407_ overlaps _26637_
+ _27416_ overlaps _18048_
+ _27421_ overlaps _27268_
+ _27426_ overlaps _27285_
+ _27429_ overlaps _26427_
+ _27430_ overlaps _27394_
+ _27432_ overlaps _27269_
+ _27433_ overlaps _27293_
+ _27438_ overlaps _27260_
+ _27440_ overlaps _25940_
+ _27441_ overlaps _26118_
+ _27444_ overlaps _27443_
+ _27445_ overlaps _27369_
+ _27446_ overlaps _27444_
+ _27449_ overlaps _26975_
+ _27450_ overlaps _26456_
+ _27451_ overlaps _27269_
+ _27457_ overlaps _26975_
+ _27458_ overlaps _27338_
+ _27461_ overlaps _27403_
+ _27464_ overlaps _25624_
+ _27465_ overlaps _26321_
+ _27468_ overlaps _27304_
+ _27469_ overlaps _27467_
+ _27473_ overlaps _27459_
+ _27474_ overlaps _26411_
+ _27478_ overlaps _26480_
+ _27481_ overlaps _26327_
+ _27486_ overlaps _27480_
+ _27487_ overlaps _25824_
+ _27488_ overlaps _27318_
+ _27492_ overlaps _25291_
+ _27493_ overlaps _27396_
+ _27495_ overlaps _27396_
+ _27497_ overlaps _27165_
+ _27500_ overlaps _27317_
+ _27511_ overlaps _25242_
+ _27514_ overlaps _27512_
+ _27515_ overlaps _27265_
+ _27521_ overlaps _26775_
+ _27536_ overlaps _27264_
+ _27545_ overlaps _27263_
+ _27546_ overlaps _27285_
+ _27547_ overlaps _27513_
+ _27561_ overlaps _27419_
+ _27570_ overlaps _22077_
+ _27575_ overlaps _26555_
+ _27578_ overlaps _26642_
+ _27579_ overlaps _27116_
+ _27580_ overlaps _27454_
+ _27584_ overlaps _26507_
+ _27593_ overlaps _27425_
+ _27596_ overlaps _27423_
+ _27603_ overlaps _27480_
+ _27604_ overlaps _27455_
+ _27609_ overlaps _27423_
+ _27611_ overlaps _27452_
+ _27613_ overlaps _27423_
+ _27615_ overlaps _27614_
+ _27620_ overlaps _27552_
+ _27622_ overlaps _27372_
+ _27624_ overlaps _27420_
+ _27628_ overlaps _27420_
+ _27629_ overlaps _27616_
+ _27635_ overlaps _27294_
+ _27639_ overlaps _27476_
+ _27640_ overlaps _27472_
+ _27643_ overlaps _27637_
+ _27645_ overlaps _27420_
+ _27648_ overlaps _27632_
+ _27649_ overlaps _27491_
+ _27651_ overlaps _27479_
+ _27654_ overlaps _27419_
+ _27657_ overlaps _27306_
+ _27671_ overlaps _24210_
+ _27672_ overlaps _27549_
+ _27686_ overlaps _27121_
+ _27687_ overlaps _27119_
+ _27709_ overlaps _24059_
+ _27711_ overlaps _27323_
+ _27717_ overlaps _27590_
+ _27720_ overlaps _27582_
+ _27721_ overlaps _27638_
+ _27725_ overlaps _27419_
+ _27727_ overlaps _21487_
+ _27736_ overlaps _27571_
+ _27743_ overlaps _27204_
+ _27747_ overlaps _27606_
+ _27755_ overlaps _27608_
+ _27757_ overlaps _22926_
+ _27764_ overlaps _27762_
+ _27770_ overlaps _26502_
+ _27772_ overlaps _26512_
+ _27775_ overlaps _27583_
+ _27776_ overlaps _26577_
+ _27777_ overlaps _27631_
+ _27782_ overlaps _27576_
+ _27783_ overlaps _27760_
+ _27784_ overlaps _27774_
+ _27786_ overlaps _27771_
+ _27787_ overlaps _27467_
+ _27789_ overlaps _27644_
+ _27796_ overlaps _27612_
+ _27814_ overlaps _27615_
+ _27819_ overlaps _27712_
+ _27820_ overlaps _27769_
+ _27821_ overlaps _27168_
+ _27823_ overlaps _27673_
+ _27831_ overlaps _27415_
+ _27834_ overlaps _27475_
+ _27850_ overlaps _27572_
+ _27852_ overlaps _27325_
+ _27853_ overlaps _27316_
+ _27855_ overlaps _27769_
+ _27857_ overlaps _27610_
+ _27858_ overlaps _27304_
+ _27863_ overlaps _27759_
+ _27865_ overlaps _27401_
+ _27877_ overlaps _27475_
+ _27891_ overlaps _27760_
+ _27893_ overlaps _27801_
+ _27897_ overlaps _26598_
+ _27901_ overlaps _27900_
+ _27905_ overlaps _27901_
+ _27906_ overlaps _26638_
+ _27908_ overlaps _27778_
+ _27911_ overlaps _27607_
+ _27916_ overlaps _27748_
+ _27922_ overlaps _27919_
+ _27923_ overlaps _27899_
+ _27924_ overlaps _27912_
+ _27925_ overlaps _27899_
+ _27926_ overlaps _27915_
+ _27927_ overlaps _27408_
+ _27928_ overlaps _27903_
+ _27929_ overlaps _27308_
+ _27930_ overlaps _27485_
+ _27931_ overlaps _27907_
+ _27932_ overlaps _27915_
+ _27933_ overlaps _27774_
+ _27934_ overlaps _27907_
+ _27935_ overlaps _27885_
+ _27939_ overlaps _27489_
+ _27940_ overlaps _25015_
+ _27941_ overlaps _26658_
+ _27942_ overlaps _27773_
+ _27944_ overlaps _27731_
+ _27947_ overlaps _27308_
+ _27959_ overlaps _27909_
+ _27964_ overlaps _27816_
+ _27998_ overlaps _27830_
+ _28000_ overlaps _27830_
+ _28002_ overlaps _27830_
+ _28007_ overlaps _27815_
+ _28008_ overlaps _27733_
+ _28044_ overlaps _26321_
+ _28045_ overlaps _26554_
+ _28049_ overlaps _27879_
+ _28051_ overlaps _26514_
+ _28054_ overlaps _26583_
+ _28059_ overlaps _27779_
+ _28061_ overlaps _27815_
+ _28063_ overlaps _27919_
+ _28068_ overlaps _26661_
+ _28071_ overlaps _27569_
+ _28072_ overlaps _27815_
+ _28081_ overlaps _23934_
+ _28087_ overlaps _27734_
+ _28107_ overlaps _27735_
+ _28140_ overlaps _27886_
+ _28141_ overlaps _27886_
+ _28144_ overlaps _27304_
+ _28145_ overlaps _27751_
+ _28158_ overlaps _27751_
+ _28170_ overlaps _27995_
+ _28172_ overlaps _23948_
+ _28173_ overlaps _27864_
+ _28177_ overlaps _27333_
+ _28179_ overlaps _27470_
+ _28181_ overlaps _27735_
+ _28184_ overlaps _28005_
+ _28186_ overlaps _26645_
+ _28187_ overlaps _27326_
+ _28192_ overlaps _27943_
+ _28194_ overlaps _27735_
+ _28198_ overlaps _27734_
+ _28200_ overlaps _27864_
+ _28201_ overlaps _27734_
+ _28211_ overlaps _24209_
+ _28230_ overlaps _27726_
+ _28234_ overlaps _27851_
+ _28266_ overlaps _28014_
+ _28271_ overlaps _27472_
+ _28272_ overlaps _27851_
+ _28277_ overlaps _27726_
+ _28283_ overlaps _27995_
+ _28284_ overlaps _26480_
+ _28289_ overlaps _27851_
+ _28297_ overlaps _26115_
+ _28298_ overlaps _27965_
+ _28360_ overlaps _24822_
+ _28374_ overlaps _28267_
+ _28380_ overlaps _28361_
+ _28392_ overlaps _28387_
+ _28395_ overlaps _24226_
+ _28397_ overlaps _28379_
+ _28398_ overlaps _27307_
+ _28400_ overlaps _25268_
+ _28405_ overlaps _28387_
+ _28413_ overlaps _27470_
+ _28416_ overlaps _25143_
+ _28419_ overlaps _28138_
+ _28482_ overlaps _28385_
+ _28494_ overlaps _27958_
+ _28495_ overlaps _28414_
+ _28496_ overlaps _28010_
+ _28498_ overlaps _28357_
+ _28499_ overlaps _28495_
+ _28501_ overlaps _28212_
+ _28502_ overlaps _28383_
+ _28503_ overlaps _24991_
+ _28506_ overlaps _24227_
+ _28512_ overlaps _28377_
+ _28514_ overlaps _26619_
+ _28577_ overlaps _28385_
+ _28590_ overlaps _28215_
+ _28602_ overlaps _28138_
+ _28607_ overlaps _24959_
+ _28611_ overlaps _28138_
+ _28614_ overlaps _28613_
+ _28617_ overlaps _28399_
+ _28623_ overlaps _28491_
+ _28675_ overlaps _28610_
+ _28706_ overlaps _28378_
+ _28710_ overlaps _28676_
+ _28711_ overlaps _28304_
+ _28719_ overlaps _28106_
+ _28724_ overlaps _28464_
+ _28733_ overlaps _28467_
+ _28776_ overlaps _28357_
+ _28777_ overlaps _28465_
+ _28790_ overlaps _28407_
+ _28794_ overlaps _28299_
+ _28796_ overlaps _28212_
+ _28801_ overlaps _24444_
+ _28802_ overlaps _28288_
+ _28808_ overlaps _28285_
+ _28810_ overlaps _28809_
+ _28824_ overlaps _28149_
+ _28826_ overlaps _28041_
+ _28827_ overlaps _28193_
+ _28866_ overlaps _28156_
+ _28877_ overlaps _28373_
+ _29325_ overlaps _24377_
+ _29326_ overlaps _25835_
+ _29328_ overlaps _24499_
+ _29331_ overlaps _26508_
+ _29333_ overlaps _26676_
+ _29338_ overlaps _26515_
+ _29343_ overlaps _24674_
+ _29345_ overlaps _26676_
+ _29347_ overlaps _26687_
+ _29350_ overlaps _26517_
+ _29351_ overlaps _24353_
+ _29352_ overlaps _25791_
+ _29359_ overlaps _26520_
+ _29362_ overlaps _25593_
+ _29365_ overlaps _25784_
+ _29368_ overlaps _26331_
+ _29370_ overlaps _26504_
+ _31102_ overlaps _25248_
+ _31103_ overlaps _25473_
+ _31105_ overlaps _27936_
+ _31107_ overlaps _27333_
+ _31109_ overlaps _28409_
+ _31110_ overlaps _28803_
+ PHY_486 overlaps PHY_1
+ PHY_5458 overlaps PHY_441
+ input40 overlaps _25848_
+ input43 overlaps _26669_
+ input59 overlaps _26684_
+ input63 overlaps _26826_
+ input70 overlaps _25593_
+ input73 overlaps _25791_
+ input85 overlaps _25794_
+ input86 overlaps _26520_
+ input88 overlaps _25772_
+ input89 overlaps _25588_
+ input92 overlaps _25794_
+ input98 overlaps _26491_
+ input99 overlaps _25400_
+ output167 overlaps _29327_
+ output171 overlaps _28183_
+ output183 overlaps _28182_
+ output188 overlaps _28182_
+ output205 overlaps _24545_
+ output250 overlaps _27921_
+ output254 overlaps _27917_
+ output306 overlaps _31110_
+ output320 overlaps input21
+ output344 overlaps _28713_
+ output360 overlaps input36
+ output401 overlaps output344
+[WARNING DPL-0006] Site check failed (48).
+ _27487_
+ output115
+ output129
+ output141
+ output143
+ output146
+ output148
+ output152
+ output159
+ output162
+ output163
+ output198
+ output199
+ output202
+ output211
+ output215
+ output226
+ output229
+ output234
+ output240
+ output243
+ output262
+ output271
+ output278
+ output283
+ output299
+ output305
+ output307
+ output322
+ output325
+ output330
+ output338
+ output342
+ output343
+ output345
+ output346
+ output349
+ output361
+ output362
+ output363
+ output365
+ output369
+ output378
+ output384
+ output388
+ output393
+ output394
+ output406

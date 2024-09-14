@@ -1,0 +1,73 @@
+Startpoint: _31195_ (rising edge-triggered flip-flop clocked by clk)
+Endpoint: _31195_ (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: min
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                  0.00    0.00    0.00 ^ _31195_/CLK (sky130_fd_sc_hd__dfxtp_1)
+                  0.06    0.55    0.55 v _31195_/Q (sky130_fd_sc_hd__dfxtp_1)
+     2    0.00                           cpuregs[0][0] (net)
+                  0.06    0.00    0.55 v _18491_/A (sky130_fd_sc_hd__clkbuf_1)
+                  0.04    0.14    0.69 v _18491_/X (sky130_fd_sc_hd__clkbuf_1)
+     1    0.00                           _02835_ (net)
+                  0.04    0.00    0.69 v _31195_/D (sky130_fd_sc_hd__dfxtp_1)
+                                  0.69   data arrival time
+
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          0.00    0.00   clock reconvergence pessimism
+                                  0.00 ^ _31195_/CLK (sky130_fd_sc_hd__dfxtp_1)
+                         -0.11   -0.11   library hold time
+                                 -0.11   data required time
+-----------------------------------------------------------------------------
+                                 -0.11   data required time
+                                 -0.69   data arrival time
+-----------------------------------------------------------------------------
+                                  0.80   slack (MET)
+
+
+Startpoint: resetn (input port clocked by clk)
+Endpoint: mem_la_write (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          4.95    4.95 ^ input external delay
+                  0.01    0.00    4.95 ^ resetn (in)
+     1    0.00                           resetn (net)
+                  0.01    0.00    4.95 ^ input101/A (sky130_fd_sc_hd__buf_4)
+                  0.05    0.08    5.03 ^ input101/X (sky130_fd_sc_hd__buf_4)
+     7    0.02                           net101 (net)
+                  0.05    0.00    5.03 ^ _15304_/A (sky130_fd_sc_hd__clkbuf_4)
+                  0.07    0.12    5.15 ^ _15304_/X (sky130_fd_sc_hd__clkbuf_4)
+     6    0.03                           _12638_ (net)
+                  0.07    0.00    5.15 ^ _17093_/C (sky130_fd_sc_hd__nand3_4)
+                  0.08    0.08    5.22 v _17093_/Y (sky130_fd_sc_hd__nand3_4)
+     4    0.03                           _13857_ (net)
+                  0.08    0.00    5.22 v _18868_/B (sky130_fd_sc_hd__nor2_8)
+                  0.06    0.08    5.30 ^ _18868_/Y (sky130_fd_sc_hd__nor2_8)
+     5    0.01                           net232 (net)
+                  0.06    0.00    5.30 ^ output232/A (sky130_fd_sc_hd__clkbuf_2)
+                  0.08    0.11    5.41 ^ output232/X (sky130_fd_sc_hd__clkbuf_2)
+     1    0.02                           mem_la_write (net)
+                  0.08    0.00    5.41 ^ mem_la_write (out)
+                                  5.41   data arrival time
+
+                  0.00   24.73   24.73   clock clk (rise edge)
+                          0.00   24.73   clock network delay (ideal)
+                          0.00   24.73   clock reconvergence pessimism
+                         -4.95   19.78   output external delay
+                                 19.78   data required time
+-----------------------------------------------------------------------------
+                                 19.78   data required time
+                                 -5.41   data arrival time
+-----------------------------------------------------------------------------
+                                 14.37   slack (MET)
+
+

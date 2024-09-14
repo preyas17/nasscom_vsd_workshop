@@ -1,0 +1,51 @@
+OpenROAD 0.9.0 1415572a73
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+Notice 0: Reading LEF file:  /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/merged_unpadded.lef
+Notice 0:     Created 13 technology layers
+Notice 0:     Created 25 technology vias
+Notice 0:     Created 442 library cells
+Notice 0: Finished LEF file:  /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/merged_unpadded.lef
+Notice 0: 
+Reading DEF file: /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/floorplan/73-ioPlacer.def
+Notice 0: Design: picorv32a
+Notice 0:     Created 409 pins.
+Notice 0:     Created 17139 components and 124080 component-terminals.
+Notice 0:     Created 17241 nets and 58350 connections.
+Notice 0: Finished DEF file: /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/floorplan/73-ioPlacer.def
+[INFO GPL-0002] DBU: 1000
+[INFO GPL-0003] SiteSize: 460 2720
+[INFO GPL-0004] CoreAreaLxLy: 5520 10880
+[INFO GPL-0005] CoreAreaUxUy: 679420 682720
+[INFO GPL-0006] NumInstances: 17139
+[INFO GPL-0007] NumPlaceInstances: 17139
+[INFO GPL-0008] NumFixedInstances: 0
+[INFO GPL-0009] NumDummyInstances: 0
+[INFO GPL-0010] NumNets: 17241
+[INFO GPL-0011] NumPins: 58759
+[INFO GPL-0012] DieAreaLxLy: 0 0
+[INFO GPL-0013] DieAreaUxUy: 685075 695795
+[INFO GPL-0014] CoreAreaLxLy: 5520 10880
+[INFO GPL-0015] CoreAreaUxUy: 679420 682720
+[INFO GPL-0016] CoreArea: 452752976000
+[INFO GPL-0017] NonPlaceInstsArea: 0
+[INFO GPL-0018] PlaceInstsArea: 181730544000
+[INFO GPL-0019] Util(%): 40.14
+[INFO GPL-0020] StdInstsArea: 181730544000
+[INFO GPL-0021] MacroInstsArea: 0
+Begin InitialPlace
+[InitialPlace]  Iter: 1 CG Error: 0.00024701 HPWL: 402420630
+[InitialPlace]  Iter: 2 CG Error: 0.00002008 HPWL: 324548033
+[InitialPlace]  Iter: 3 CG Error: 0.00001877 HPWL: 324862180
+[InitialPlace]  Iter: 4 CG Error: 0.00002633 HPWL: 324988541
+[InitialPlace]  Iter: 5 CG Error: 0.00001166 HPWL: 324469474
+[InitialPlace]  Iter: 6 CG Error: 0.00001119 HPWL: 324565555
+[InitialPlace]  Iter: 7 CG Error: 0.00001063 HPWL: 324256755
+[InitialPlace]  Iter: 8 CG Error: 0.00001124 HPWL: 324466680
+[InitialPlace]  Iter: 9 CG Error: 0.00000756 HPWL: 324074531
+End InitialPlace
+[ERROR GPL-0302] Filler area is negative!!
+       Please put higher target density or 
+       Re-floorplan to have enough coreArea
+
+Error: or_replace.tcl, 94 GPL-0302

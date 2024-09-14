@@ -1,0 +1,3 @@
+  violation type: MetSpc
+    srcs: _04822_ _11908_ 
+    bbox = ( 152.21, 374.33 ) - ( 152.345, 374.425 ) on Layer li1
