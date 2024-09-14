@@ -474,3 +474,54 @@ now clkbuf cells are replaced with clk buf2 cells and hold and setup both condit
 
 checking setup and hold skew, and adding back clkbuf1 
 ![Alt text](./day4_screenshots/img54.png?raw=true "img_day4_42")
+
+#Day 5 Power Distribution Networking and Routing
+
+
+	cd ~/Desktop/work/tools/openlane_working_dir/openlane
+	docker
+	./flow.tcl -interactive
+	package require openlane 0.9
+	prep -design 
+	set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+	add_lefs -src $lefs
+	echo $::env(CURRENT_DEF)
+	run_synthesis
+	init_floorplan
+	place_io
+	tap_decap_or
+	run_placement
+	run_cts
+
+![Alt text](./day5_screenshots/img1.png?raw=true "img_day5_1")
+![Alt text](./day5_screenshots/img2.png?raw=true "img_day5_2")
+
+	gen_pdn
+
+
+
+![Alt text](./day5_screenshots/img3.png?raw=true "img_day5_3")
+![Alt text](./day5_screenshots/img4.png?raw=true "img_day5_4")
+
+	set ::env(ROUTING_STRATEGY) 0
+![Alt text](./day5_screenshots/img5.png?raw=true "img_day5_5")
+
+	run_routing
+
+![Alt text](./day5_screenshots/img6.png?raw=true "img_day6")	
+
+
+
+#Extracting Parasatics
+
+check the created spef file: picorv32a.spef
+
+	cd ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/14-09_11-32/results/routing/
+	ls -ltr
+
+![Alt text](./day5_screenshots/img7.png?raw=true "img_day7")
+
+
+routing netlist generated : picorv32a.synthesis_preroute.v
+![Alt text](./day5_screenshots/img8.png?raw=true "img_day8")
+

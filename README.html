@@ -1408,4 +1408,40 @@ set_propagated_clock [all_clocks]
 <img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img53.png?raw=true" title="img_day4_42" />
 <img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img52.png?raw=true" title="img_day4_41" /></p>
 <p>checking setup and hold skew, and adding back clkbuf1 
-<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img54.png?raw=true" title="img_day4_42" /></p></article></body></html>
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img54.png?raw=true" title="img_day4_42" /></p>
+<h1 id="day-5-power-distribution-networking-and-routing">Day 5 Power Distribution Networking and Routing<a class="headerlink" href="#day-5-power-distribution-networking-and-routing" title="Permanent link"></a></h1>
+<pre><code>cd ~/Desktop/work/tools/openlane_working_dir/openlane
+docker
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design 
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+echo $::env(CURRENT_DEF)
+run_synthesis
+init_floorplan
+place_io
+tap_decap_or
+run_placement
+run_cts
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day5_screenshots/img1.png?raw=true" title="img_day5_1" />
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day5_screenshots/img2.png?raw=true" title="img_day5_2" /></p>
+<pre><code>gen_pdn
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day5_screenshots/img3.png?raw=true" title="img_day5_3" />
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day5_screenshots/img4.png?raw=true" title="img_day5_4" /></p>
+<pre><code>set ::env(ROUTING_STRATEGY) 0
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day5_screenshots/img5.png?raw=true" title="img_day5_5" /></p>
+<pre><code>run_routing
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day5_screenshots/img6.png?raw=true" title="img_day6" />    </p>
+<h1 id="extracting-parasatics">Extracting Parasatics<a class="headerlink" href="#extracting-parasatics" title="Permanent link"></a></h1>
+<p>check the created spef file: picorv32a.spef</p>
+<pre><code>cd ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/14-09_11-32/results/routing/
+ls -ltr
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day5_screenshots/img7.png?raw=true" title="img_day7" /></p>
+<p>routing netlist generated : picorv32a.synthesis_preroute.v
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day5_screenshots/img8.png?raw=true" title="img_day8" /></p></article></body></html>
