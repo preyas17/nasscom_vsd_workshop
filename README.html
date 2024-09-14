@@ -1308,7 +1308,7 @@ rm -rf  ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/12-
 run_synthesis
 </code></pre>
 <p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img22.png?raw=true" title="img_day4_18" /></p>
-<p>cheking sta results again</p>
+<p>checking sta results again</p>
 <pre><code>sta pre_sta.conf
 </code></pre>
 <p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img23.png?raw=true" title="img_day4_18" /></p>
@@ -1329,4 +1329,23 @@ run_synthesis
 <p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img33.png?raw=true" title="img_day4_20" />    </p>
 <p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img33a.png?raw=true" title="img_day4_20" />
 <img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img33b.png?raw=true" title="img_day4_20" /></p>
-<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img34.png?raw=true" title="img_day4_21" /></p></article></body></html>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img34.png?raw=true" title="img_day4_21" /></p>
+<p>writing the netlist which contains these replaced cells</p>
+<pre><code>write_verilog ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/12-09_17-48/results/synthesis/picorv32a.synthesis.v
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img35.png?raw=true" title="img_day4_22" />
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img36.png?raw=true" title="img_day4_23" /></p>
+<pre><code>init_floorplan
+place_io
+tap_decap_or
+run_placement
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img37.png?raw=true" title="img_day4_24" />    </p>
+<p>run clock tree synthesis</p>
+<pre><code>run_cts
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img38.png?raw=true" title="img_day4_25" />    </p>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img39.png?raw=true" title="img_day4_26" /></p>
+<p>checking the max capacitance at output pin of sky130_fd_sc_hd__clkbuf_16
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img40.png?raw=true" title="img_day4_27" />
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img41.png?raw=true" title="img_day4_28" /></p></article></body></html>

@@ -339,7 +339,7 @@ setting max fanout size as 4 and run_synthesis again
 ![Alt text](./day4_screenshots/img22.png?raw=true "img_day4_18")
 
 
-cheking sta results again
+checking sta results again
 
 	sta pre_sta.conf
 
@@ -372,3 +372,33 @@ observing the changes which we made by replacing the cells
 
 
 ![Alt text](./day4_screenshots/img34.png?raw=true "img_day4_21")
+
+
+writing the netlist which contains these replaced cells
+
+	write_verilog ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/12-09_17-48/results/synthesis/picorv32a.synthesis.v
+
+![Alt text](./day4_screenshots/img35.png?raw=true "img_day4_22")
+![Alt text](./day4_screenshots/img36.png?raw=true "img_day4_23")
+
+	init_floorplan
+	place_io
+	tap_decap_or
+	run_placement
+
+![Alt text](./day4_screenshots/img37.png?raw=true "img_day4_24")	
+
+run clock tree synthesis
+
+	run_cts	
+
+
+![Alt text](./day4_screenshots/img38.png?raw=true "img_day4_25")	
+
+
+
+![Alt text](./day4_screenshots/img39.png?raw=true "img_day4_26")
+
+checking the max capacitance at output pin of sky130_fd_sc_hd__clkbuf_16
+![Alt text](./day4_screenshots/img40.png?raw=true "img_day4_27")
+![Alt text](./day4_screenshots/img41.png?raw=true "img_day4_28")
