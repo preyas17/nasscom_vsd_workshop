@@ -1348,4 +1348,64 @@ run_placement
 <p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img39.png?raw=true" title="img_day4_26" /></p>
 <p>checking the max capacitance at output pin of sky130_fd_sc_hd__clkbuf_16
 <img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img40.png?raw=true" title="img_day4_27" />
-<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img41.png?raw=true" title="img_day4_28" /></p></article></body></html>
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img41.png?raw=true" title="img_day4_28" /></p>
+<h1 id="analysis-after-cts">Analysis after CTS<a class="headerlink" href="#analysis-after-cts" title="Permanent link"></a></h1>
+<pre><code>openroad
+read_lef /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/12-09_17-48/results/cts/picorv32a.cts.def
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img43.png?raw=true" title="img_day4_30" /></p>
+<pre><code>write_db pico_cts.db
+read_db pico_cts.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/12-09_17-48/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty -max /openLANE_flow/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib
+read_liberty -min /openLANE_flow/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+report_checks -path_delay min_max -format full_clock_expanded -digits 4
+exit
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img44.png?raw=true" title="img_day4_31" />
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img45.png?raw=true" title="img_day4_32" /></p>
+<p>since triton doesn&rsquo;t support multiple PVT conditions, so running with typical library</p>
+<pre><code>read_db pico_cts.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/12-09_17-48/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+link_design picorv32a
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img46.png?raw=true" title="img_day4_34" /></p>
+<pre><code>report_checks -path_delay min_max -format full_clock_expanded -digits 4
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img47a.png?raw=true" title="img_day4_35" />
+we are getting hold violations, lets see if replacing the buffer cells can fix timing violations
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img47.png?raw=true" title="img_day4_35" /></p>
+<pre><code>echo $::env(CTS_CLK_BUFFER_LIST)
+lreplace $::env(CTS_CLK_BUFFER_LIST) 0 0
+set ::env(CTS_CLK_BUFFER_LIST) [lreplace $::env(CTS_CLK_BUFFER_LIST) 0 0]
+echo $::env(CTS_CLK_BUFFER_LIST)
+set ::env(CURRENT_DEF) /openLANE_flow/designs/picorv32a/runs/12-09_17-48/results/placement/picorv32a.placement.def
+run_cts
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img49.png?raw=true" title="img_day4_37" />
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img50.png?raw=true" title="img_day4_38" /></p>
+<pre><code>openroad
+read_lef /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/12-09_17-48/results/cts/picorv32a.cts.def
+write_db pico_cts1.db
+read_db pico_cts1.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/12-09_17-48/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+link_design picorv32a
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+</code></pre>
+<p><img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img51.png?raw=true" title="img_day4_39" /></p>
+<pre><code>report_checks -path_delay min_max -format full_clock_expanded -digits 4
+</code></pre>
+<p>now clkbuf cells are replaced with clk buf2 cells and hold and setup both conditions are getting met
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img53.png?raw=true" title="img_day4_42" />
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img52.png?raw=true" title="img_day4_41" /></p>
+<p>checking setup and hold skew, and adding back clkbuf1 
+<img alt="Alt text" src="/home/vsduser/Downloads/nasscom_vsd_workshop/day4_screenshots/img54.png?raw=true" title="img_day4_42" /></p></article></body></html>

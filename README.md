@@ -402,3 +402,75 @@ run clock tree synthesis
 checking the max capacitance at output pin of sky130_fd_sc_hd__clkbuf_16
 ![Alt text](./day4_screenshots/img40.png?raw=true "img_day4_27")
 ![Alt text](./day4_screenshots/img41.png?raw=true "img_day4_28")
+
+
+#Analysis after CTS
+
+	openroad
+	read_lef /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/merged.lef
+	read_def /openLANE_flow/designs/picorv32a/runs/12-09_17-48/results/cts/picorv32a.cts.def
+
+![Alt text](./day4_screenshots/img43.png?raw=true "img_day4_30")
+
+	write_db pico_cts.db
+	read_db pico_cts.db
+	read_verilog /openLANE_flow/designs/picorv32a/runs/12-09_17-48/results/synthesis/picorv32a.synthesis_cts.v
+	read_liberty -max /openLANE_flow/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib
+	read_liberty -min /openLANE_flow/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib
+	read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+	set_propagated_clock [all_clocks]
+	report_checks -path_delay min_max -format full_clock_expanded -digits 4
+	exit
+
+![Alt text](./day4_screenshots/img44.png?raw=true "img_day4_31")
+![Alt text](./day4_screenshots/img45.png?raw=true "img_day4_32")
+
+since triton doesn't support multiple PVT conditions, so running with typical library
+
+	read_db pico_cts.db
+	read_verilog /openLANE_flow/designs/picorv32a/runs/12-09_17-48/results/synthesis/picorv32a.synthesis_cts.v
+	read_liberty $::env(LIB_SYNTH_COMPLETE)
+	link_design picorv32a
+	read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+	set_propagated_clock [all_clocks]
+
+![Alt text](./day4_screenshots/img46.png?raw=true "img_day4_34")
+
+	report_checks -path_delay min_max -format full_clock_expanded -digits 4
+
+![Alt text](./day4_screenshots/img47a.png?raw=true "img_day4_35")
+we are getting hold violations, lets see if replacing the buffer cells can fix timing violations
+![Alt text](./day4_screenshots/img47.png?raw=true "img_day4_35")
+
+	echo $::env(CTS_CLK_BUFFER_LIST)
+	lreplace $::env(CTS_CLK_BUFFER_LIST) 0 0
+	set ::env(CTS_CLK_BUFFER_LIST) [lreplace $::env(CTS_CLK_BUFFER_LIST) 0 0]
+	echo $::env(CTS_CLK_BUFFER_LIST)
+	set ::env(CURRENT_DEF) /openLANE_flow/designs/picorv32a/runs/12-09_17-48/results/placement/picorv32a.placement.def
+	run_cts	
+
+![Alt text](./day4_screenshots/img49.png?raw=true "img_day4_37")
+![Alt text](./day4_screenshots/img50.png?raw=true "img_day4_38")
+
+	openroad
+	read_lef /openLANE_flow/designs/picorv32a/runs/12-09_17-48/tmp/merged.lef
+	read_def /openLANE_flow/designs/picorv32a/runs/12-09_17-48/results/cts/picorv32a.cts.def
+	write_db pico_cts1.db
+	read_db pico_cts1.db
+	read_verilog /openLANE_flow/designs/picorv32a/runs/12-09_17-48/results/synthesis/picorv32a.synthesis_cts.v
+	read_liberty $::env(LIB_SYNTH_COMPLETE)
+	link_design picorv32a
+	read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+	set_propagated_clock [all_clocks]
+	
+
+![Alt text](./day4_screenshots/img51.png?raw=true "img_day4_39")
+
+	report_checks -path_delay min_max -format full_clock_expanded -digits 4
+
+now clkbuf cells are replaced with clk buf2 cells and hold and setup both conditions are getting met
+![Alt text](./day4_screenshots/img53.png?raw=true "img_day4_42")
+![Alt text](./day4_screenshots/img52.png?raw=true "img_day4_41")
+
+checking setup and hold skew, and adding back clkbuf1 
+![Alt text](./day4_screenshots/img54.png?raw=true "img_day4_42")
