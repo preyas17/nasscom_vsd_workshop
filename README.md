@@ -526,6 +526,6 @@ routing netlist generated : picorv32a.synthesis_preroute.v
 ![Alt text](./day5_screenshots/img8.png?raw=true "img_day8")
 
 #Course Completion Certificate
-![Alt text](./day5_screenshots/Certificate.png?raw=true "img_day9")
+![Alt text](./day5_screenshots/PreyasSharma-VSD_nasscom_Certificate.png?raw=true "img_day9")
 
 
