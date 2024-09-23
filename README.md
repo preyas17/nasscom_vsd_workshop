@@ -525,3 +525,7 @@ check the created spef file: picorv32a.spef
 routing netlist generated : picorv32a.synthesis_preroute.v
 ![Alt text](./day5_screenshots/img8.png?raw=true "img_day8")
 
+#Course Completion Certificate
+[Certificate]([https://website-name.com](https://drive.google.com/file/d/1xfi2B3KVPToOkOF9r3mNj6vr_sxExYPv/view?usp=sharing))
+
+
